@@ -1,0 +1,41 @@
+#library "readconsole"
+
+function void readconsole(void)
+{
+	#define sf_startcash GetCVar("sf_startcash");
+	#define sf_teamcash GetCVar("sf_teamcash");
+	#define sf_gamelength GetCVar("sf_gamelength");
+	#define sf_skillmult GetCVar("sf_skillmult");
+	#define sf_adaptivespawn GetCVar("sf_adaptivespawn");
+	#define sf_cacodemons GetCVar("sf_cacodemons");
+
+	if (sf_startcash)
+	{
+		f_Startcash = sf_startcash;
+	}
+
+	if (sf_teamcash)
+	{
+		c_Startcash = sf_teamcash;
+	}
+
+	if (sf_gamelength)
+	{
+		f_Gamelength = sf_gamelength;
+	}
+
+	if (sf_skillmult)
+	{
+		f_AISkillMultiplier = sf_skillmult;
+	}
+
+	if (sf_adaptivespawn)
+	{
+		f_AdaptiveSpawning = sf_adaptivespawn;
+	}
+
+	if (sf_cacodemons)
+	{
+		f_Cacodemons = sf_cacodemons;
+	}
+}

@@ -1,0 +1,384 @@
+///////////////////////////////////////////////////
+//      SHOTGUN FRENZY
+//   a mod by Wad'a'Holic
+
+// f_SecMan.acs
+// manages the sectors
+
+#library "f_SecMan"
+#import "f_IntDB.acs"
+#import "f_Tip.acs"
+#include "zcommon.acs"
+
+function int m_CalcSector (void)
+{
+    // locals
+    int l_Result;
+    
+    // check demon count (per sector)
+    m_InSector[0] = thingcount(0, 111);
+    m_InSector[1] = thingcount(0, 112);
+    m_InSector[2] = thingcount(0, 113);
+    m_InSector[3] = thingcount(0, 114);
+    
+    if (g_Status == 1)      l_Result = m_InSector[0];
+    if (g_Status == 2)      l_Result = m_InSector[0] + m_InSector[1];
+    if (g_Status == 3)      l_Result = m_InSector[1] + m_InSector[2];
+    if (g_Status == 4)      l_Result = m_InSector[2] + m_InSector[3];
+    
+    return l_Result;
+}
+
+function int m_CalcTotal (void)
+{
+    // locals
+    int l_Result;
+    
+    // count total demons
+    l_Result = thingcount(0, 111) + thingcount(0, 112) + thingcount(0, 113) + thingcount(0, 114);
+    
+    return l_Result;
+}
+
+// setup comm cash and wait for players to enter the game
+script 51 OPEN
+{
+    // setup default credits for the commander
+    c_Credits = c_Startcash;
+    
+    while(playercount() == 0) delay(1);
+    g_Status = 1; 
+}
+
+int alarmsUsed = 0;
+
+// sector open
+script 100 OPEN
+{
+    // activate beginning lift
+    floor_raisetonearest(105, 50);
+    
+    // locals
+    int l_CurrentSector;
+    
+    // wait until the game is active
+    while(g_Status == 0)
+        delay(35);
+    
+    // setup current sector
+    l_CurrentSector = g_Status;
+    
+    // the game has started
+            f_TipShow("INFO", "DOORS BREACHED!", "30 seconds...", 0);
+            acs_execute(129, 0, 1, 30, 0);
+    delay(35 * 20);
+            f_TipShow("INFO", "DOORS BREACHED!", "10 seconds...", 0);
+    delay(35 * 5);
+            f_TipShow("INFO", "DOORS BREACHED!", "5 seconds...", 0);
+	if (alarmsUsed == 0){
+		ambientsound("TIME", 125);
+	}
+    delay(35 * 1);
+	if (alarmsUsed == 0){
+		ambientsound("TIME", 125);
+	}
+    delay(35 * 1);
+	if (alarmsUsed == 0){
+		ambientsound("TIME", 125);
+	}
+    delay(35 * 1);
+	if (alarmsUsed == 0){
+		ambientsound("TIME", 125);
+	}
+    delay(35 * 1);
+	if (alarmsUsed == 0){
+		ambientsound("TIME", 125);
+	}
+    delay(35 * 1);
+            f_TipShow("INFO", "DOORS BREACHED!", "Demons are entering!", 0);
+	if (alarmsUsed == 0){
+		ambientsound("ATTACK", 125);
+	}
+	alarmsUsed += 1;
+    
+    // breached sound
+    switch(g_Status)
+    {
+        case 1:
+            ambientsound("cv/sector1", 125);
+            break;
+        case 2:
+            ambientsound("cv/sector2", 125);
+            break;
+        case 3:
+            ambientsound("cv/sector3", 125);
+            break;
+        case 4:
+            ambientsound("cv/sector4", 125);
+            break;
+    }
+    
+    // open doors/gates
+    if (f_Doortype == 0)
+    {
+	if (100+g_Status == 101){
+		door_open(101, f_Doorspeed);
+	}
+	else if (100+g_Status == 102){
+		door_open(101, f_Doorspeed);
+		door_open(102, f_Doorspeed);
+	}
+	else if (100+g_Status == 103){
+		door_open(101, f_Doorspeed);
+		door_open(102, f_Doorspeed);
+		door_open(103, f_Doorspeed);
+	}
+	else if (100+g_Status == 104){
+		door_open(101, f_Doorspeed);
+		door_open(102, f_Doorspeed);
+		door_open(103, f_Doorspeed);
+		door_open(104, f_Doorspeed);
+	}
+    }
+    else
+    {
+	if (100+g_Status == 101){
+		floor_lowertolowest(101, f_Doorspeed);
+	}
+	else if (100+g_Status == 102){
+		floor_lowertolowest(101, f_Doorspeed);
+		floor_lowertolowest(102, f_Doorspeed);
+	}
+	else if (100+g_Status == 103){
+		floor_lowertolowest(101, f_Doorspeed);
+		floor_lowertolowest(102, f_Doorspeed);
+		floor_lowertolowest(103, f_Doorspeed);
+	}
+	else if (100+g_Status == 104){
+		floor_lowertolowest(101, f_Doorspeed);
+		floor_lowertolowest(102, f_Doorspeed);
+		floor_lowertolowest(103, f_Doorspeed);
+		floor_lowertolowest(104, f_Doorspeed);
+	}
+    }
+    
+    // can reclaim?
+    while (l_CurrentSector == g_Status)
+    {
+        if (m_CalcSector() == 0 && g_Status > 1)
+        {
+            acs_execute(103, 0, 0, 0, 0);
+            break;
+        }
+        
+        delay(5);
+    }
+}
+
+// sector lost (upon battery destruction)
+script 102 (void)
+{
+    delay(35);
+    
+    // make sure there aren't any more batteries in the sector
+    if (thingcount(0, 100 + g_Status) > 0)
+    {
+        f_TipShow("INFO", "Battery Status", "One of our batteries have been destroyed!", 9);
+        terminate;
+    }
+    
+    ambientsound("cv/batterydestroyed", 125);
+    
+    // message
+    switch (g_Status)
+    {
+        case 1:
+            f_TipShow("INFO", "Sector 1 Battery Status", "Destroyed!", 9);
+            break;
+        case 2:
+            f_TipShow("INFO", "Sector 2 Battery Status", "Destroyed!", 9);
+            break;
+        case 3:
+            f_TipShow("INFO", "Sector 3 Battery Status", "Destroyed!", 9);
+            break;
+        case 4:
+            f_TipShow("INFO", "Marine Core Status", "Destroyed! GAME OVER...", 9);
+            acs_execute(125, 0, 4, 0, 0);
+            break;
+    }
+    
+    // change sectors
+    g_Status ++;
+    delay(35 * 2);
+    
+    // recall sector open script
+    if (g_Status < 5){
+        acs_execute(100, 0, 0, 0, 0);}
+    
+        
+        // hate the next area
+        thing_hate(109, g_Status + 100, 4);
+	if(g_Status == 1){
+        	thing_hate(110, g_Status + 100, 4);
+        }
+	if(g_Status == 2){
+        	thing_hate(110, g_Status + 100, 4);
+        	thing_hate(111, g_Status + 100, 4);
+        }
+	if(g_Status == 3){
+        	thing_hate(110, g_Status + 100, 4);
+        	thing_hate(111, g_Status + 100, 4);
+        	thing_hate(112, g_Status + 100, 4);
+        }
+	if(g_Status == 4){
+        	thing_hate(110, g_Status + 100, 4);
+        	thing_hate(111, g_Status + 100, 4);
+        	thing_hate(112, g_Status + 100, 4);
+        	thing_hate(113, g_Status + 100, 4);
+        }
+}
+
+// sector reclaimed
+script 103 (void)
+{
+    // close doors/gates
+    if (f_Doortype == 0)
+    {
+        ceiling_lowerandcrush(100 + g_Status, f_Doorspeed, 2);
+        ceiling_lowerandcrush(99 + g_Status, f_Doorspeed, 2);
+        ambientsound("g/sector_reclaim" + g_Status, 125);
+    }
+    else
+    {
+        floor_raisetohighest(100 + g_Status, f_Doorspeed);
+        floor_raisetohighest(99 + g_Status, f_Doorspeed);
+        ambientsound("g/sector_reclaim" + g_Status, 125);
+    }
+    
+    // change sectors
+    if (g_Status > 1)
+        g_Status --;
+        
+    delay(1);
+    
+        // hate the next area
+        thing_hate(109, g_Status + 100, 4);
+	if(g_Status == 1){
+        	thing_hate(110, g_Status + 100, 4);
+        }
+	if(g_Status == 2){
+        	thing_hate(110, g_Status + 100, 4);
+        	thing_hate(111, g_Status + 100, 4);
+        }
+	if(g_Status == 3){
+        	thing_hate(110, g_Status + 100, 4);
+        	thing_hate(111, g_Status + 100, 4);
+        	thing_hate(112, g_Status + 100, 4);
+        }
+	if(g_Status == 4){
+        	thing_hate(110, g_Status + 100, 4);
+        	thing_hate(111, g_Status + 100, 4);
+        	thing_hate(112, g_Status + 100, 4);
+        	thing_hate(113, g_Status + 100, 4);
+        }
+        
+        
+        
+    // message
+    switch (g_Status)
+    {
+        case 1:
+            f_TipShow("INFO", "Sector 1 Battery Status", "Restored!", 0);
+            thing_raise(101);
+            break;
+        case 2:
+            f_TipShow("INFO", "Sector 2 Battery Status", "Restored!", 0);
+            thing_raise(102);
+            break;
+        case 3:
+            f_TipShow("INFO", "Sector 3 Battery Status", "Restored!", 0);
+            thing_raise(103);
+            break;
+    }
+    
+    
+    delay(35 * 2);
+    
+    // recall sector open script
+    acs_execute(100, 0, 0, 0, 0);
+    
+    // kill any left over demons
+    delay(35 * 3);
+    thing_destroy(110 + g_Status, 500);
+}
+
+int secdelay;
+
+// enter/exit sector
+script 104 (int l_Type, int l_Bypass, int l_ExecuteAlways)
+{
+    // terminate if bot
+    if (playerisbot(playernumber()) && l_Bypass == 0)        terminate;
+    
+    // special portal?
+    if (g_SpecialPortal > 0 && l_Bypass == 0)
+    {
+        teleport_nostop(g_SpecialPortal, 0, 0);
+        terminate;
+    }
+    
+    // enter sector
+	if (l_Type == 0)
+	{
+		if (g_Status < 4)
+		{
+			if(l_ExecuteAlways == 0)
+			{
+				ACS_ExecuteAlways(104,0,0,0,1);
+				terminate;
+			}
+			
+			if(secdelay > 0) //Too soon after the previous player entered the teleport?
+			{
+				teleport_nostop(120, 0, 0);
+				Print(s:"Please give the player enough time to move away from the teleport destination spot.");
+				terminate;
+			}
+			
+			teleport_nostop(120 + g_Status, 0, 0);
+			if(p_TankSlot[playernumber()] == 2) secdelay = 20; //Give tank more time
+			else secdelay = 10; //Players
+			if(PlayerCount() < 3){
+				f_TipShow("PLAYER", "", "Has entered the sector...", 10);
+			}
+			delay(secdelay);
+			secdelay = 0;
+		}
+		else
+		{
+			if (g_GuardianMode == 0) {
+				// a nice pretty message
+				sethudsize(s_ScreenSize[0], s_ScreenSize[1], s_ScreenSize[2]);
+				setfont("BCOUNT");
+				hudmessage(s:"a"; 2, 180, CR_Gold, 0.1, 0.1, 5.0);
+				setfont("BIGFONT");
+				hudmessage(s:"Teleporter Offline!"; 1, 178, CR_Gold, 570.0, 390.1, 5.0);
+				setfont("CONFONT");
+				hudmessage(s:"The area is overrun!\nCannot teleport to sector"; 2, 179, CR_Gold, 580.0, 420.1, 1.0);
+			}
+			else {
+				// open sector selection menu
+				acs_execute(155, 0, 52, 0, 0);
+			}
+		}
+	}
+    
+    // exit sector
+    if (l_Type == 1)
+    {
+        teleport_nostop(120, 0, 0);
+        if(PlayerCount() < 3){
+             f_TipShow("PLAYER", "", "Has LEFT the sector...", 10);
+        }
+    }
+}

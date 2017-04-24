@@ -1,0 +1,600 @@
+ACTOR wave0000 : RandomSpawner
+{
+	Monster
+	dropitem "sfFastZombie", 255, 1
+	dropitem "sfFastZombie", 255, 1
+	dropitem "sfFastZombie", 255, 1
+	dropitem "sfFastZombie", 255, 1
+	dropitem "sfFastZombie", 255, 1
+}
+
+ACTOR wave0001 : RandomSpawner
+{
+	Monster
+	dropitem "sfFastZombie", 255, 1
+	dropitem "sfFastZombie", 255, 1
+	dropitem "ChainsawZombie", 255, 1
+	dropitem "sfZombieman", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+}
+
+ACTOR wave0002 : RandomSpawner
+{
+	Monster
+	dropitem "sfChaingunGuy", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfDemon", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfFastZombie", 255, 1
+}
+
+ACTOR wave0003 : RandomSpawner
+{
+	Monster
+	dropitem "sfChaingunGuy", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfFastZombie", 255, 1
+}
+
+ACTOR wave0004 : RandomSpawner
+{
+	Monster
+	dropitem "ChaingunGuy2", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfDemon", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfChaingunGuy", 255, 1
+}
+
+ACTOR wave0005 : RandomSpawner
+{
+	Monster
+	dropitem "SSGZombie", 255, 1
+	dropitem "sfDemon", 255, 1
+	dropitem "ChaingunGuy2", 255, 1
+	dropitem "VoidDarkImp", 255, 1
+	dropitem "NamiDarkImp", 255, 1
+}
+
+ACTOR wave0006 : RandomSpawner
+{
+	Monster
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "sfChaingunGuy", 255, 1
+	dropitem "sfChaingunGuy", 255, 1
+	dropitem "sfDoomImp", 255, 1
+}
+
+ACTOR wave0007 : RandomSpawner
+{
+	Monster
+	dropitem "NailBorg", 255, 1
+	dropitem "sfChaingunGuy", 255, 1
+	dropitem "NailBorgCommando", 255, 1
+	dropitem "Hellion", 255, 1
+	dropitem "SSGZombie", 255, 1
+}
+
+ACTOR wave0008 : RandomSpawner
+{
+	Monster
+	dropitem "sfRevenant", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "Bloodfiend", 255, 1
+	dropitem "NailBorg", 255, 1
+	dropitem "SSGZombie", 255, 1
+}
+
+ACTOR wave0009 : RandomSpawner
+{
+	Monster
+	dropitem "NailBorgCommando", 255, 1
+	dropitem "NailBorg", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "SSGZombie", 255, 1
+}
+
+ACTOR wave0010 : RandomSpawner
+{
+	Monster
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfHellKnight", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "SSGZombie", 255, 1
+}
+
+ACTOR wave0011 : RandomSpawner
+{
+	Monster
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfDemon", 255, 1
+	dropitem "sfHellKnight", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+}
+
+ACTOR wave0012 : RandomSpawner
+{
+	Monster
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "Bloodfiend", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "sfRevenant", 255, 1
+}
+
+ACTOR wave0013 : RandomSpawner
+{
+	Monster
+	dropitem "sfRevenant", 255, 1
+	dropitem "Bloodfiend", 255, 1
+	dropitem "sfHellKnight", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "wave0013", 0, 1
+}
+
+ACTOR wave0014 : RandomSpawner
+{
+	Monster
+	dropitem "sfDemon", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "sfRevenant", 255, 1
+}
+
+ACTOR wave0015 : RandomSpawner
+{
+	Monster
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "wave0015", 0, 1
+}
+
+ACTOR wave0016 : RandomSpawner
+{
+	Monster
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cybruiser", 255, 1
+}
+
+ACTOR wave0017 : RandomSpawner
+{
+	Monster
+	dropitem "SSGZombie", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "Cyberbaron", 255, 1
+}
+
+ACTOR wave0018 : RandomSpawner
+{
+	Monster
+	dropitem "SSGZombie", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "Cyberbaron", 255, 1
+}
+
+ACTOR wave0019 : RandomSpawner
+{
+	Monster
+	dropitem "sfArchvile", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "Cyberbaron", 255, 1
+}
+
+ACTOR wave0100 : RandomSpawner
+{
+	Monster
+	dropitem "wave0100", 0, 1
+	dropitem "wave0100", 0, 1
+	dropitem "wave0100", 0, 1
+	dropitem "wave0100", 0, 1
+	dropitem "wave0100", 0, 1
+}
+
+ACTOR wave0101 : RandomSpawner
+{
+	Monster
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfZombieMan", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfZombieMan", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+}
+
+ACTOR wave0102 : RandomSpawner
+{
+	Monster
+	dropitem "sfDoomImp", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfDoomImp", 255, 1
+	dropitem "sfShotgunGuy", 255, 1
+	dropitem "sfDoomImp", 255, 1
+}
+
+ACTOR wave0103 : RandomSpawner
+{
+	Monster
+	dropitem "sfDoomImp", 255, 1
+	dropitem "SlimeImp", 255, 1
+	dropitem "sfDoomImp", 255, 1
+	dropitem "SlimeImp", 255, 1
+	dropitem "sfDoomImp", 255, 1
+}
+
+ACTOR wave0104 : RandomSpawner
+{
+	Monster
+	dropitem "sfDoomImp", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "sfDemon", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "SlimeImp", 255, 1
+}
+
+ACTOR wave0105 : RandomSpawner
+{
+	Monster
+	dropitem "sfDoomImp", 255, 1
+	dropitem "SlimeImp", 255, 1
+	dropitem "Hellion", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfDoomImp", 255, 1
+}
+
+ACTOR wave0106 : RandomSpawner
+{
+	Monster
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "StoneDemon", 255, 1
+	dropitem "ChaingunGuy2", 255, 1
+}
+
+ACTOR wave0107 : RandomSpawner
+{
+	Monster
+	dropitem "VoidDarkImp", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "ChaingunGuy2", 255, 1
+}
+
+ACTOR wave0108 : RandomSpawner
+{
+	Monster
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfHellKnight", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfHellKnight", 255, 1
+	dropitem "sfArachnotron_tw", 255, 1
+}
+
+ACTOR wave0109 : RandomSpawner
+{
+	Monster
+	dropitem "sfFatso", 255, 1
+	dropitem "sfDoomImp", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "Cyberbaron", 255, 1
+	dropitem "Cyberbaron", 255, 1
+}
+
+ACTOR wave0110 : RandomSpawner
+{
+	Monster
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "Cyberbaron", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfArachnotron_tw", 255, 1
+}
+
+ACTOR wave0111 : RandomSpawner
+{
+	Monster
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "Cybruiser", 255, 1
+}
+
+ACTOR wave0112 : RandomSpawner
+{
+	Monster
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "ArchonOfHell", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+}
+
+ACTOR wave0113 : RandomSpawner
+{
+	Monster
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "ArchonOfHell", 255, 1
+	dropitem "CyberBaron", 255, 1
+}
+
+ACTOR wave0114 : RandomSpawner
+{
+	Monster
+	dropitem "ArchonOfHell", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "wave0114", 0, 1
+	dropitem "wave0114", 0, 1
+	dropitem "wave0114", 0, 1
+}
+
+ACTOR wave0115 : RandomSpawner
+{
+	Monster
+	dropitem "ArchonOfHell", 255, 1
+	dropitem "sfArchvile", 255, 1
+	dropitem "wave0115", 0, 1
+	dropitem "wave0115", 0, 1
+	dropitem "wave0115", 0, 1
+}
+
+ACTOR wave0116 : RandomSpawner
+{
+	Monster
+	dropitem "ArchonOfHell", 255, 1
+	dropitem "sfArchvile", 255, 1
+	dropitem "wave0116", 0, 1
+	dropitem "wave0116", 0, 1
+	dropitem "wave0116", 0, 1
+}
+
+ACTOR wave0117 : RandomSpawner
+{
+	Monster
+	dropitem "Cyberbaron", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "wave0117", 0, 1
+	dropitem "wave0117", 0, 1
+}
+
+ACTOR wave0118 : RandomSpawner
+{
+	Monster
+	dropitem "Cyberbaron", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cyberbaron", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cyberbaron", 255, 1
+}
+
+ACTOR wave0119 : RandomSpawner
+{
+	Monster
+	dropitem "wave0119", 0, 1
+	dropitem "wave0119", 0, 1
+	dropitem "wave0119", 0, 1
+	dropitem "wave0119", 0, 1
+	dropitem "wave0119", 0, 1
+}
+
+ACTOR wave0200 : RandomSpawner
+{
+	Monster
+	dropitem "wave0200", 0, 1
+	dropitem "wave0200", 0, 1
+	dropitem "wave0200", 0, 1
+	dropitem "wave0200", 0, 1
+	dropitem "wave0200", 0, 1
+}
+
+ACTOR wave0201 : RandomSpawner
+{
+	Monster
+	dropitem "wave0201", 0, 1
+	dropitem "wave0201", 0, 1
+	dropitem "wave0201", 0, 1
+	dropitem "wave0201", 0, 1
+	dropitem "wave0201", 0, 1
+}
+
+ACTOR wave0202 : RandomSpawner
+{
+	Monster
+	dropitem "sfDemon", 255, 1
+	dropitem "sfDemon", 255, 1
+	dropitem "sfDemon", 255, 1
+	dropitem "wave0202", 0, 1
+	dropitem "wave0202", 0, 1
+}
+
+ACTOR wave0203 : RandomSpawner
+{
+	Monster
+	dropitem "sfDemon", 255, 1
+	dropitem "sfDemon", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "wave0203", 0, 1
+	dropitem "wave0203", 0, 1
+}
+
+ACTOR wave0204 : RandomSpawner
+{
+	Monster
+	dropitem "sfDemon", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "Bloodfiend", 255, 1
+	dropitem "wave0204", 0, 1
+	dropitem "wave0204", 0, 1
+}
+
+ACTOR wave0205 : RandomSpawner
+{
+	Monster
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "Bloodfiend", 255, 1
+	dropitem "SSGZombie", 255, 1
+	dropitem "StoneDemon", 255, 1
+	dropitem "sfRevenant", 255, 1
+}
+
+ACTOR wave0206 : RandomSpawner
+{
+	Monster
+	dropitem "sfFatso", 255, 1
+	dropitem "BloodDemonClone", 255, 1
+	dropitem "StoneDemon", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfHellKnight", 255, 1
+}
+
+ACTOR wave0207 : RandomSpawner
+{
+	Monster
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfHellKnight", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfArachnotron_tw", 255, 1
+	dropitem "sfArachnotron_tw", 255, 1
+}
+
+ACTOR wave0208 : RandomSpawner
+{
+	Monster
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfHellKnight", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfArachnotron_tw", 255, 1
+	dropitem "sfArachnotron_tw", 255, 1
+}
+
+ACTOR wave0209 : RandomSpawner
+{
+	Monster
+	dropitem "Cyberbaron", 255, 1
+	dropitem "Cyberbaron", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+}
+
+ACTOR wave0210 : RandomSpawner
+{
+	Monster
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "sfFatso", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfRevenant", 255, 1
+}
+
+ACTOR wave0211 : RandomSpawner
+{
+	Monster
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "sfRevenant", 255, 1
+	dropitem "wave0211", 0, 1
+	dropitem "wave0211", 0, 1
+}
+
+ACTOR wave0212 : RandomSpawner
+{
+	Monster
+	dropitem "ArchonOfHell", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cyberbaron", 255, 1
+	dropitem "wave0212", 0, 1
+	dropitem "wave0212", 0, 1
+}
+
+ACTOR wave0213 : RandomSpawner
+{
+	Monster
+	dropitem "ArchonOfHell", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cyberbaron", 255, 1
+	dropitem "wave0213", 0, 1
+	dropitem "wave0213", 0, 1
+}
+
+ACTOR wave0214 : RandomSpawner
+{
+	Monster
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cyberbaron", 255, 1
+	dropitem "sfArchvile", 255, 1
+	dropitem "Cyberbaron", 255, 1
+	dropitem "wave0214", 0, 1
+}
+
+ACTOR wave0215 : RandomSpawner
+{
+	Monster
+	dropitem "Cybruiser", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "sfCyberdemon", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "wave0215", 0, 1
+}
+
+ACTOR wave0216 : RandomSpawner
+{
+	Monster
+	dropitem "sfCyberdemon", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "sfCyberdemon", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "wave0216", 0, 1
+}
+
+ACTOR wave0217 : RandomSpawner
+{
+	Monster
+	dropitem "sfRevenant", 255, 1
+	dropitem "sfArchvile", 255, 1
+	dropitem "Cybruiser", 255, 1
+	dropitem "sfCyberdemon", 255, 1
+	dropitem "sfArchvile", 255, 1
+}
+
+ACTOR wave0218 : RandomSpawner
+{
+	Monster
+	dropitem "SpiderAnnihilator", 255, 1
+	dropitem "sfArchvile", 255, 1
+	dropitem "Annihilator", 255, 1
+	dropitem "sfArchvile", 255, 1
+	dropitem "sfCyberdemon", 255, 1
+}
+
+ACTOR wave0219 : RandomSpawner
+{
+	Monster
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "SpiderAnnihilator", 255, 1
+	dropitem "sfBaronOfHell", 255, 1
+	dropitem "Annihilator", 255, 1
+	dropitem "Annihilator", 255, 1
+}
+

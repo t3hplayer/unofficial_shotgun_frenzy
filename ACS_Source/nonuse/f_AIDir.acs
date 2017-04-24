@@ -1,0 +1,76 @@
+///////////////////////////////////////////////////
+//      SHOTGUN FRENZY
+//   a mod by Wad'a'Holic
+
+// f_AIDir.acs
+// the almighty Peter Jackson of Doom! "STAND BACK LAD, THIS CALLS FOR DIVINE INTERVENTION"
+
+// include the custom levels
+#library "f_AIDir"
+#import "f_IntDB.acs"
+#include "zcommon.acs"
+
+// test variable
+int playercountReplicate = 0;
+
+// check function
+function int f_AIDir_Check (void)
+{
+    // setup a return container
+    int l_Score;
+    
+    // gather score information
+    
+    // phase 1 - killed monsters
+    l_Score += getlevelinfo(LEVELINFO_KILLED_MONSTERS)*f_AISkillMultiplier/2/20;
+    
+    // phase 2 - count players
+    l_Score += playercount() * 5;
+    l_Score += playercountReplicate * 5;
+    
+    // phase 3 - check current sector
+    if (g_Status == 1)      l_Score += 15;
+    if (g_Status == 2)      l_Score += 0;
+    if (g_Status == 3)      l_Score -= 5;
+    if (g_Status == 4)      l_Score -= 15;
+    
+    // phase 4 - if a commander based game, then count credits too
+    if (f_Gametype == 1)
+    {
+        if (c_Credits < 100)            l_Score -= 5;
+        else if (c_Credits < 500)       l_Score -= 10;
+        else if (c_Credits >= 1000)
+        {
+            for (int a = 0; a < 50; a ++)
+            {
+                if (c_Credits > a * 1000)    l_Score += 1;
+            }
+        }
+    }
+    
+    // phase 5 - use  f_AISkillMultiplier to add to the skill *REMOVED* found a new purpose for this, see above
+    //l_Score +=  f_AISkillMultiplier;
+    
+    // phase 6 *NEW* - track powerful weapon purchase
+    if (g_AIDirector_TrackRockets > 0)      l_Score += 10;
+    if (g_AIDirector_TrackPlasma > 0)      l_Score += 10;
+    if (g_AIDirector_TrackFlamer > 0)      l_Score += 10;
+    
+    // return the score
+    if (f_Gametype != 5)
+    {
+        return l_Score;
+    }
+    
+    return m_SurvivalWave * 10 + 1;
+}
+
+// the ai director debugger
+script 269 (void)
+{
+    while(1)
+    {
+        hudmessagebold(s:"AI Director status: ", d:f_AIDir_Check();0, 66, cr_gold, 0.3, 0.2, 1.0);
+        delay(1);
+    }
+}  

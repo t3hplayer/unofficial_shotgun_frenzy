@@ -1,0 +1,422 @@
+///////////////////////////////////////////////////
+//      SHOTGUN FRENZY
+//   a mod by Wad'a'Holic
+
+// f_Cred.acs
+// credit management
+
+
+#import "f_IntDB.acs"
+
+#import "f_Rank.acs"
+
+#library "f_Cred"
+
+#include "zcommon.acs"
+
+
+
+// old credit hook - just to be sure
+
+
+script 105 (int l_AmountSpecial, int l_SplatCombo, int l_NoSoundQue)
+
+{
+
+	// play sound?
+
+	if (l_NoSoundQue == 0)	{localambientsound("p/kill", 125);}
+
+	if (l_AmountSpecial == 99){
+		// increase credit
+
+		p_Credits[playernumber()] += 5;
+		
+		// message
+
+		setfont("BIGFONT");
+
+		hudmessage(s:"+", d:5, s:" BONUS"; 1, 0, cr_blue, random(0.45, 0.55), random(0.65, 0.75), 0.5);
+
+		// increase team credits
+
+		c_Credits += 25;
+
+	}
+
+	else
+	{
+		p_monsterKilled(1, 0);
+
+	}
+
+}
+
+
+
+
+
+
+
+
+// mmm: monster killed - give credits and exp
+
+
+function void p_monsterKilled(int monsterClass, int l_SplatCombo)
+
+{
+
+	if (playernumber() == -1) 
+	return; 
+	
+	// activator not player
+
+ 
+	int l_Amount = p_MonsterCredits[monsterClass] + playercount();
+	
+	// increase credit
+
+	p_Credits[playernumber()] += l_Amount;
+ 
+	// message
+  setfont("BIGFONT");
+
+	hudmessage(s:"+", d:l_Amount; 1, 0, cr_gold, random(0.45, 0.55), random(0.65, 0.75), 0.5);
+ 
+	
+	// increase team credits
+
+	c_Credits += l_Amount;
+
+
+	// Processing Phase 1
+
+	if (c_Techflag[56] == 1)	{c_Credits += 15;
+}
+	
+	// Processing Phase 2
+	if (c_Techflag[57] == 1)	{c_Credits += 15;}	
+	
+	// increase exp and combo
+  p_Exp[playernumber()] ++;
+
+	p_Combo[playernumber()] ++;
+
+
+  p_SplatCombo[playernumber()] += l_SplatCombo;
+
+
+  // increase rank
+
+  if (p_Exp[playernumber()] > 0)
+
+    for (int i = 0; i < NUM_RANKS; i++)
+
+      if (p_RankExp[i] == p_Exp[playernumber()] && p_RankExp[i] >= p_RankExp[p_Rank[playernumber()]+1])
+ 
+       {
+    
+      p_IncreaseRank();
+
+          break;
+
+        }
+} 
+
+ 
+
+
+// money bag
+
+script 855 (int l_Amount, int l_SplatCombo)
+{
+  
+  // increase credit
+   
+ p_Credits[playernumber()] += l_Amount;
+
+}
+
+
+
+
+
+// mmm: monster killed
+
+script 500 (int monsterID, int splat)
+
+{
+
+  int monsterClass = 0;
+ // monster class
+
+
+  // class 1
+
+  switch (monsterID)
+    {
+    
+  // class 0 (1-50 hp) 5
+
+      case 14: // Zombieman, 20 hp
+
+      case 15: // Shotgun guy, 30 hp
+
+      case 16: // FastZombie, 2 hp
+
+      case 18: // SpiderImpHead, 15 hp
+
+      case 31: // ChainsawZombie, 30 hp
+
+        monsterClass = 0;
+
+        break;
+
+      // class 1 (50-100 hp) 10
+
+      case 8: // Chaingun guy, 70 hp
+
+      case 9: // Imp, 60 hp
+
+      case 25: // Hellion, 70 hp
+
+      case 27: // SSG Zombie, 90 hp
+
+      case 39: // Zombie on a turbo segway, 60 hp
+
+      case 40: // Slime Imp, 90 hp
+
+        monsterClass = 1;
+     
+   break;
+
+      
+// class 2 (100-200 hp) 15
+
+      case 1: // Demon, 150 hp
+
+      case 11: // Lost soul, 100 hp
+
+      case 17: // MeleeZombie, 100 hp
+
+      case 26: // Nail Borg, 180 hp
+
+      case 32: // Nami Dark Imp, 120 hp
+
+      case 33: // Void Dark Imp, 130 hp
+
+      case 34: // Devil, 120 hp
+
+      case 35: // Double Chaingunner, 100 hp
+
+      case 42: // Suicide Bomber, 120 hp
+        monsterClass = 2;
+
+        break;
+
+
+      // class 3 (200-600 hp) 30
+
+      case 2: // Arachnotron, 500 hp
+
+      case 5: // Hell Knight, 500 hp
+
+      case 6: // Cacodemon, 400 hp
+
+      case 12: // Revenant, 300 hp
+
+      case 29: // Mech-Demon, 300 hp
+
+      case 30: // Bloodfiend, 250 hp
+
+      case 36: // Hellhound, 300 hp
+
+      case 37: // Nail Borg Commando, 230 hp
+
+      case 38: // Zombie with a Repeater, 200 hp
+
+      case 41: // Stone Demon, 400 hp
+
+        monsterClass = 3;
+        break;
+
+
+      // class 4 (600-1000 hp) 100
+
+      case 3: // Archvile, 700 hp
+
+      case 4: // Baron of Hell, 1000 hp
+ 
+      case 10: // Mancubus, 600 hp
+
+      case 20: // Afrit, 800 hp
+
+      case 22: // Cyber Baron, 800 hp
+
+      case 24: // Fusion Spider, 600 hp
+
+        monsterClass = 4;
+        break;
+
+
+      // class 5 (1000-5000 hp) 250
+
+      case 7: // Cyberdemon, 4000 hp
+
+      case 13: // Spiderdemon, 3000 hp
+
+      case 21: // Archon Of Hell, 2000 hp
+
+      case 23: // Cybruiser, 2000 hp
+
+        monsterClass = 5;
+        break;
+
+
+      // class 6 (5000+ hp) 500
+
+      case 19: // Cyber Annihilator, 7000 hp
+
+      case 28: // Demolisher, 65000 hp
+
+        monsterClass = 6;
+        break;
+    }
+
+ 
+ // drop reward item
+  
+p_dropItem(monsterClass);
+
+  // give credits and xp
+  
+SetActivatorToTarget(0);
+
+  p_monsterKilled(monsterClass, splat);
+
+}
+
+
+
+
+// mmm: drop reward item on monster death
+
+
+function void p_dropItem(int monsterClass)
+{
+
+  // weakest monsters don't drop anything
+
+//  if (monsterClass == 0)
+
+//    return;
+
+
+  
+
+// probability of dropping item
+ 
+ int chance = p_MonsterItem[monsterClass];
+
+  if (random(0, 100) > chance)
+   
+ return;
+
+
+
+  // loop through rewards for this monster class (max 4 rewards)
+
+  str type = "";
+
+  
+  for (int i = 0; i < NUM_MONSTER_REWARDS; i++)
+
+    {
+
+      switch (monsterClass)
+
+        {
+
+          case 0:
+            type = m_rewardItems0[i];
+
+            chance = m_rewardChances0[i];
+
+            break;
+
+  
+          case 1:
+
+            type = m_rewardItems1[i];
+
+            chance = m_rewardChances1[i];
+
+            break;
+
+  
+          case 2:
+
+            type = m_rewardItems2[i];
+
+            chance = m_rewardChances2[i];
+
+            break;
+ 
+          case 3:
+
+            type = m_rewardItems3[i];
+
+            chance = m_rewardChances3[i];
+
+            break;
+
+  
+          case 4:
+
+            type = m_rewardItems4[i];
+
+            chance = m_rewardChances4[i];
+
+            break;
+
+  
+          case 5:
+
+            type = m_rewardItems5[i];
+
+            chance = m_rewardChances5[i];
+
+            break;
+  
+          case 6:
+
+            type = m_rewardItems6[i];
+
+            chance = m_rewardChances6[i];
+
+            break;
+
+  
+          default:
+
+            type = "HealthBonus";
+
+            chance = 50;
+
+        }
+
+
+      if (random(0, 100) > chance)
+
+        continue;
+
+
+      // spawn item
+
+      Spawn(type, GetActorX(0) + random(0, 10),
+        GetActorY(0) + random(0, 10),
+        GetActorFloorZ(0) + 10);
+
+    }
+}
+  

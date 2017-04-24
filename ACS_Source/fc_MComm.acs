@@ -1,0 +1,412 @@
+///////////////////////////////////////////////////
+//      SHOTGUN FRENZY
+//   a mod by Wad'a'Holic
+
+// fc_MarineCommand.acs
+// structure scripts
+
+#import "f_IntDB.acs"
+#import "f_Tip.acs"
+#import "fc_Const.acs"
+#import "fc_CommB.acs"
+
+#library "fc_MComm"
+#include "zcommon.acs"
+
+// build
+script 300 (void)
+{
+	SetActivator(0); //Preventing a major disaster
+    // construction
+    c_Construct (290, 208, 128, 128, "FLOOR4_8", "CEIL4_2", "");
+    c_Construct (291, 192, 32, 128, "FLOOR4_8", "CEIL4_2", "");
+    c_Construct (292, 201, 132, 128, "GRND", "CEIL4_2", "");
+    c_Construct (197, 224, 128, 128, "FLOOR4_8", "CEIL4_2", "");
+    c_Construct (294, 176, 24, 256, "GRND", "CEIL5_2", "");
+    c_Construct (198, 144, 24, 360, "GRND", "CEIL5_2", "");
+    c_Construct (296, 224, 24, 264, "FLOOR4_8", "SHAWN2", "");
+    c_Construct (297, 255, 16, 136, "GRND", "CEIL5_1", "");
+    c_Construct (298, 224, 8, 72, "GRND", "CEIL5_2", "");
+    c_Construct (299, 208, 128, 136, "CEIL5_1", "CEIL5_1", "");
+    c_Construct (300, 176, 128, 136, "CEIL5_1", "CEIL5_1", "");
+    c_Construct (301, 208, 128, 72, "CEIL5_1", "CEIL5_2", "");
+    c_Construct (302, 255, 384, 0, "", "", "");
+    c_Construct (303, 240, 16, 160, "CEIL5_2", "CEIL5_2", "");
+    c_Construct (344, 240, 128, 0, "CEIL5_2", "", "");
+    c_Construct (346, 240, 8, 0, "GRND", "", "");
+    c_Construct (347, 240, 16, 368, "CEIL5_2", "CEIL5_2", "");
+    
+    // line setup
+    c_LineSet (10, "TMIDWL45", 0, 0, 0);
+    c_LineSet (10, "TMIDWL45", 1, 0, 0);
+    
+    // colour swatching
+    sector_setcolor(291, 100, 100, 255);
+    
+    // set techflag
+    c_Techflag[3] = 1;
+    
+    // refresh the commander menu
+    c_NewButton_Refresh();
+    
+    // open heavy vehicle bay
+    door_open(155, 50);
+    
+    // constructed message
+    f_TipShow ("BUTTON", "Marine Command", "Construction Complete!", 1);
+    
+    // check bridge
+    delay(35 * 2);
+    if (c_Techflag[3] == 1 && c_Techflag[5] == 1 && c_BridgeStatus_4 == 0 && f_Gametype != 5)
+    {
+        c_BridgeStatus_4 = 1;
+        floor_raisetonearest(343, 125);
+    }
+}
+
+// strike placement 1
+script 301 (void)
+{
+    // place marker and change menus
+    setactorstate(130, "Spawn_StrikeMarker1", 0);
+    c_ButtonCat = 12;
+    
+    // refresh commanders menu
+    c_NewButton_Refresh();
+}
+
+// strike placement 1
+script 302 (void)
+{
+	SetActivator(0); //Preventing a major disaster
+    // disable air attacks
+    c_Techflag[54] = 3;
+    
+    // place marker and change menus
+    setactorstate(130, "Spawn_StrikeMarker2", 0);
+    c_ButtonCat = 3;
+    
+    // refresh commanders menu
+    c_NewButton_Refresh();
+    
+    delay(1);
+    
+    
+    // create a line between the markers
+    acs_execute(140, 0, 140, 141, 10);
+    delay(3);
+    
+    // message
+    f_TipShow ("CM76", "Airstrike", "Incoming! Take cover", 2);
+    ambientsound("c/airstrike1", 125);
+    ambientsound("cv/airstrike", 125);
+    
+    delay(35 * 5);
+    
+    // spawn 10 rockets
+    thing_projectile(500, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(501, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(502, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(503, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(504, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(505, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(506, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(507, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(508, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(509, 170, random(0,224), 20, -10);     delay(35);
+    thing_projectile(500, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(501, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(502, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(503, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(504, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(505, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(506, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(507, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(508, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(509, 170, random(0,224), 20, -10);     delay(35);
+    thing_projectile(500, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(501, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(502, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(503, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(504, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(505, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(506, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(507, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(508, 170, random(0,224), 20, -10);     delay(5);
+    thing_projectile(509, 170, random(0,224), 20, -10);     delay(35);
+    
+    // remove markers
+    thing_remove(140);
+    thing_remove(141);
+    acs_execute(141, 0, 0, 0, 0);
+    
+    delay(35 * 5);
+    
+    // enable air attacks
+    c_Techflag[54] = 1;
+}
+
+// cancel strike
+script 303 (void)
+{
+    // change category for the commander
+    c_ButtonCat = 3;
+    
+    // remove striker points
+    thing_remove(140);
+    thing_remove(141);
+    
+    // refresh commanders menu
+    c_NewButton_Refresh();
+}
+
+// fire ion cannon
+script 304 (void)
+{
+	SetActivator(0); //Preventing a major disaster
+    // define a local container
+    int l_IonCannonTime;
+    
+    // switch off flags
+    c_Techflag[53] = 4;
+    
+    // refresh commanders menu
+    c_NewButton_Refresh();
+    
+    // message
+    f_TipShow ("CM79", "Ion Cannon", "Firing in 5 seconds...", 2);
+    
+    delay(35 * 5);
+    
+    // fire
+    acs_executealways(126, 0, 1, 0, 0);
+    ambientsound("c/ioncannon", 100);
+    while(l_IonCannonTime < 450)
+    {
+        setactorstate(130, "Spawn_IonCannon", 0);
+        l_IonCannonTime += 6;
+        delay(5);	// was 10
+    }
+    
+    delay(35);
+    
+    // charge the cannon
+    c_Techflag[53] = 3;
+    f_TipShow ("BUTTON", "", "", 17);
+    
+    // refresh commanders menu
+    delay(35);
+    c_NewButton_Refresh();
+    
+}
+
+
+// buy tank
+script 305 (void)
+{
+    // change flags
+    f_CenterTip("Mech Purchased!");
+    f_TipShow("VEHIC", "", "Has purchased a Mech!", 10);
+}
+
+// enter tank
+script 306 (void)
+{
+	// make sure godsphere is not in use
+	
+	if (CheckInventory("PowerInvulnerable") == 0) {
+	
+    // welcome message
+    setfont("BIGFONT");
+    hudmessage(s:"To exit the Mech, walk up to the entrance of the Mech Factory...\nMechs are repaired upon exiting the vehicle, when reusing the Mech, it will have full armor..."; 0, 0, 0, 0.5, 0.5, 6.0);
+    
+    // change flags
+    p_TankSlot[playernumber()] = 2;
+    
+    // teleport to new location
+    teleport(142, 0, 0);
+    
+    // change skin and class
+    //morphactor(0, "TankPlayer", "", 999999, 2, "", "");
+    giveinventory("MechMorph",1);
+    if (p_MechUpgradeWeapons[playernumber()] == 0){
+    	giveinventory("TankGun", 1);
+    }
+    else{
+    	giveinventory("TankGunAdvanced", 1);
+    }
+    
+    // give more health
+    if (p_MechUpgradeArmor[playernumber()] == 0){
+   	 setactorproperty(0, APROP_HEALTH, 2500);
+    }
+    else{
+   	 setactorproperty(0, APROP_HEALTH, 3500);
+    }
+    
+    // setup tank hud
+    sethudsize(s_ScreenSize[0], s_ScreenSize[1], s_ScreenSize[2]);
+    
+    // open marine command doors
+    door_raise(347, 10, 150, 0);
+    
+    delay(5);
+    while(p_TankSlot[playernumber()] == 2 && g_Status != 299)
+    {
+        // display tank hud
+        if (GetPlayerInput(-1, INPUT_YAW) < 0)           setfont("TANKH3");
+        else if (GetPlayerInput(-1, INPUT_YAW) > 0)      setfont("TANKH2");
+        else
+            setfont("TANKH1");
+        
+        hudmessage(s:"a"; 0, 201, 0, 400.0, 0.1, 1.0);
+        
+        // switch to tank weapon
+        if (p_MechUpgradeWeapons[playernumber()] == 0){
+       	 setweapon("TankGun");
+        }
+        else{
+       	 setweapon("TankGunAdvanced");
+        }
+        
+        // display tank health
+        setfont("CONFONT");
+        hudmessage(s:"Armor: ", d:getactorproperty(0, APROP_HEALTH) - 1000; 0, 202, CR_BLUE, 128.1, 300.1, 1.0);
+        
+        // destroyed?
+        if (getactorproperty(0, APROP_HEALTH) < 1000)
+        {
+	acs_executealways(13, 0, 0, 0, 0);
+             takeinventory("MechMorph",1);
+            Unmorphactor(0, 1);
+            setactorproperty(0, APROP_HEALTH, 50);
+            takeinventory("TankGun",1);
+            takeinventory("TankGunAdvanced",1);
+            delay(10);
+            spawnspot("StrikerRocket_SelfDestruct", 0, 0, 0);
+        }
+        
+        delay(6);
+    }
+    
+    // purge
+    setfont("CONFONT");
+    hudmessage(s:""; 0, 201, 0, 400.0, 0.1, 1.0);
+    
+	
+	
+	
+	}
+	else
+	{
+		setfont("CONFONT");
+		print(s:"Cannot enter while Godsphere\nis in use!");
+	}
+	
+	
+	
+}
+
+script 13 (void){
+    
+    // purge
+    setfont("CONFONT");
+    hudmessage(s:""; 0, 201, 0, 400.0, 0.1, 1.0);
+	p_TankSlot[playernumber()] = 99;
+	delay(35 * 5);
+	f_CenterTip ("Your mech has been destroyed and is now repairing...");
+	delay(35 * 2);
+	f_CenterTip ("Your mech will be ready for use in 2 minutes...");
+	delay(35 * 60 * 2);
+	p_TankSlot[playernumber()] = 1;
+	f_CenterTip ("Your mech is now ready for deployment!");
+	delay(35);
+
+    
+    // purge
+    setfont("CONFONT");
+    hudmessagebold(s:""; 0, 201, 0, 400.0, 0.1, 1.0);
+}
+// exit tank
+script 307 (void)
+{
+    // change flags
+    p_TankSlot[playernumber()] = 1;
+             takeinventory("MechMorph",1);
+    Unmorphactor(0, 1);
+    
+    // fix players health
+    acs_execute(106, 0, 1, 1, 1);
+
+    takeinventory("TankGun",1);
+    takeinventory("TankGunAdvanced",1);
+    
+    // purge
+    setfont("CONFONT");
+    hudmessagebold(s:""; 0, 201, 0, 400.0, 0.1, 1.0);
+}
+
+// exit tank (map version)
+script 31 (void)
+{
+    // player is tank?
+    if (p_TankSlot[playernumber()] == 2){
+    // change flags
+    p_TankSlot[playernumber()] = 1;
+             takeinventory("MechMorph",1);
+    Unmorphactor(0, 1);
+    
+    // fix players health
+    acs_execute(106, 0, 1, 1, 1);
+
+    takeinventory("TankGun",1);
+    takeinventory("TankGunAdvanced",1);
+    
+    // purge
+    setfont("CONFONT");
+    hudmessagebold(s:""; 0, 201, 0, 400.0, 0.1, 1.0);
+    }
+}
+
+// repair tank
+script 308 (void)
+{
+    localambientsound("veh/tankshutdown", 125);
+    setactorproperty(0, APROP_HEALTH, 2500);
+}
+
+// marker refreshing
+script 310 (int l_Type)
+{
+	SetActivator(0); //Preventing a major disaster
+    thing_remove(l_Type);
+    delay(1);
+    thing_changetid(0, l_Type);
+}
+
+// tank emergency exit from marine command (the player might get locked inside)
+script 158 (void)
+{
+    if (c_Techflag[3] == 1)
+    {
+        door_raise(347, 10, 150, 0);
+        setweapon("TankGun");
+    }
+}
+
+// mech upgrade: weapons
+script 421 (void){
+	p_MechUpgradeWeapons[playernumber()] = 1;
+    f_TipShow("VEHICA", "", "Has upgraded their Mechs weapons...", 10);
+    localambientsound("vehicle/mechupgrade", 125);
+    delay(35);
+    localambientsound("veh/tankshutdown", 125);
+}
+// mech upgrade: armor
+script 422 (void){
+	p_MechUpgradeArmor[playernumber()] = 1;
+    f_TipShow("VEHICB", "", "Has upgraded their Mechs armor...", 10);
+    localambientsound("vehicle/mechupgrade", 125);
+    delay(35);
+    localambientsound("veh/tankshutdown", 125);
+}

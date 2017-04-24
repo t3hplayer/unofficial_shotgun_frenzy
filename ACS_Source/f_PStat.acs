@@ -1,0 +1,459 @@
+///////////////////////////////////////////////////
+//      SHOTGUN FRENZY
+//   a mod by Wad'a'Holic
+
+// f_PStat.acs
+// player status and respawning
+
+#import "f_IntDB.acs"
+#import "f_Tip.acs"
+#import "f_Cred.acs"
+#import "fl_Price.acs"
+#library "f_PStat"
+#include "zcommon.acs"
+
+// player dies
+script 52 DEATH
+{
+    // menu open? kill it
+    //p_MenuReveal_Kill();
+    
+
+
+
+if (g_Status == 5){
+	thing_hate(109, 104, 4);
+	thing_hate(110, 104, 4);
+	thing_hate(111, 104, 4);
+	thing_hate(112, 104, 4);
+	thing_hate(113, 104, 4);
+	thing_hate(114, 104, 4);
+}
+else{
+	thing_hate(109, 100+g_Status, 4);
+	thing_hate(110, 100+g_Status, 4);
+	thing_hate(111, 100+g_Status, 4);
+	thing_hate(112, 100+g_Status, 4);
+	thing_hate(113,100+g_Status, 4);
+	thing_hate(114, 100+g_Status, 4);
+}
+
+
+
+
+
+
+
+    // unmorph incase the player is in a tank
+    Unmorphactor(0, 1);
+    hudmessage(s:""; 0, 201, 0, 400.0, 0.1, 1.0);
+    
+    // check tank status
+    if (p_TankSlot[playernumber()] == 2)        p_TankSlot[playernumber()] = 0;
+    
+    // increase death counter
+    p_TotalPlayerDeaths ++;
+    
+    // display message
+    if(PlayerCount() < 3){
+          f_TipShow("DEATH", "", "Has Fallen!", 10);
+    }
+
+if(checkweapon("Beretta"))p_LastWeap[playernumber()] = 0;
+else if(checkweapon("Beretta_Dual"))p_LastWeap[playernumber()] = 1;
+else if(checkweapon("Beretta_Smg"))p_LastWeap[playernumber()] = 2;
+else if(checkweapon("BoomStick"))p_LastWeap[playernumber()] = 3;
+else if(checkweapon("BoomStick_Explosive"))p_LastWeap[playernumber()] = 3;
+else if(checkweapon("BoomStick_Bayonet"))p_LastWeap[playernumber()] = 3;
+else if(checkweapon("SSG"))p_LastWeap[playernumber()] = 4;
+else if(checkweapon("SSG_AutoLoad"))p_LastWeap[playernumber()] = 4;
+else if(checkweapon("SSG_Explosive"))p_LastWeap[playernumber()] = 4;
+else if(checkweapon("QuadShot"))p_LastWeap[playernumber()] = 5;
+else if(checkweapon("QuadShot_Bayonet"))p_LastWeap[playernumber()] = 5;
+else if(checkweapon("QuadShot_Explosive"))p_LastWeap[playernumber()] = 5;
+else if(checkweapon("BuckShot"))p_LastWeap[playernumber()] = 6;
+else if(checkweapon("BuckShot_Chamber"))p_LastWeap[playernumber()] = 6;
+else if(checkweapon("BuckShot_Explosive"))p_LastWeap[playernumber()] = 6;
+else if(checkweapon("Spitter"))p_LastWeap[playernumber()] = 7;
+else if(checkweapon("Spitter_GLauncher"))p_LastWeap[playernumber()] = 7;
+else if(checkweapon("Spitter_SSG"))p_LastWeap[playernumber()] = 7;
+else if(checkweapon("Healer"))p_LastWeap[playernumber()] = 8;
+else if(checkweapon("Stocker"))p_LastWeap[playernumber()] = 9;
+else if(checkweapon("Launcher_Multi"))p_LastWeap[playernumber()] = 10;
+else if(checkweapon("Launcher_Exploder"))p_LastWeap[playernumber()] = 10;
+else if(checkweapon("Launcher"))p_LastWeap[playernumber()] = 10;
+else if(checkweapon("Flinger"))p_LastWeap[playernumber()] = 11;
+else if(checkweapon("Flinger_Expander"))p_LastWeap[playernumber()] = 11;
+else if(checkweapon("Flinger_MinePlacer"))p_LastWeap[playernumber()] = 11;
+else if(checkweapon("Plasmagun"))p_LastWeap[playernumber()] = 12;
+else if(checkweapon("plasmagun_Advanced"))p_LastWeap[playernumber()] = 12;
+else if(checkweapon("plasmagun_spread"))p_LastWeap[playernumber()] = 12;
+else if(checkweapon("railgun"))p_LastWeap[playernumber()] = 13;
+else if(checkweapon("railgun_taser"))p_LastWeap[playernumber()] = 13;
+else if(checkweapon("railgun_slug"))p_LastWeap[playernumber()] = 13;
+else if(checkweapon("Flamer"))p_LastWeap[playernumber()] = 14;
+
+else if(checkweapon("dualshot"))p_LastWeap[playernumber()] = 15;
+else if(checkweapon("dualshot_razor"))p_LastWeap[playernumber()] = 15;
+
+else if(checkweapon("repeater"))p_LastWeap[playernumber()] = 16;
+else if(checkweapon("repeater_doublespeed"))p_LastWeap[playernumber()] = 16;
+else if(checkweapon("repeater_blastshells"))p_LastWeap[playernumber()] = 16;
+
+else if(checkweapon("BFG"))p_LastWeap[playernumber()] = 17; //hooray for bfg!
+
+
+
+//crap! any idea how to shorten the "if" spam?
+// ^ Nooooope...
+//                              -Chuck Testa
+	
+	
+	
+	
+	// a nice pretty message for the loser to make them think on the bright side
+	sethudsize(s_ScreenSize[0], s_ScreenSize[1], s_ScreenSize[2]);
+	setfont("BCOUNT");
+	hudmessage(s:"a"; 2, 180, CR_Gold, 0.1, 0.1, 5.0);
+	//setfont("BIGFONT");
+	//hudmessage(s:"You've been killed!"; 1, 178, CR_Red, 570.0, 370.1, 5.0);
+	setfont("CONFONT");
+	hudmessage(s:"You have been killed!\nThe bodycount sits at ", d:getlevelinfo(LEVELINFO_KILLED_MONSTERS), s:" dead monsters!\nTotal player deaths is sitting at ", d:p_TotalPlayerDeaths; 2, 179, CR_Gold, 580.0, 420.1, 1.0);
+
+
+}
+
+// player enters game
+script 53 ENTER
+{
+	
+    //Clear potential bugs
+    setactorproperty(0, APROP_SPEED, 1.0);
+    setactorproperty(0, APROP_Health, 100);
+    setplayerproperty(0, 0, PROP_TOTALLYFROZEN);
+    ACS_ExecuteAlways(106,0,3,1,1);
+    p_MenuSelection_Active[playernumber()] = 0;
+    
+    
+    // give credits and post global tip
+    // mmm: bonus from level time
+
+    //t3h: This is too aggressive -- players are speccing / rejoining because
+    //     they earn more credits over time than by playing.
+    //     So, let's add a "corrective" console variable
+    //     This way, if the cvar is unset, we behave as always. But it can be made positive, to increase the rate, or negative, to decrease the rate.
+
+    //t3h: Trying again. Just adding the cvar wasn't enough. Now, just don't give money unless they're really new (no frags)
+    //     Also, there's a bug where sometimes players don't start at rank 0.
+
+    // clear any previous items
+    clearinventory();
+
+    // give the player his/her boomstick and beretta
+    giveinventory("Beretta", 1);
+    giveinventory("Boomstick", 1);
+    setweapon("Boomstick");
+
+    int creditmult = GetCVar("sf_creditcorrection");
+    p_Credits[playernumber()] = f_Startcash + (10 + creditmult) * Timer() / 35;
+    if (p_Credits[playernumber()] > 20000)
+    {
+      p_Credits[playernumber()] = 20000;
+    }
+    p_Rank[playernumber()] = 0;
+    p_Exp_Points[playernumber()] = 0;
+    p_Exp[playernumber()] = 0;
+    p_KickSlot[playernumber()] = 0;
+    p_MechUpgradeWeapons[playernumber()] = 0;
+    p_MechUpgradeArmor[playernumber()] = 0;
+    p_TankSlot[playernumber()] = 0;
+    ConsoleCommand("setslot 8 Flamer FlamerS BFG BFGS BoomerCannon");
+    f_TipShow("PLAYER", "", "Has entered the game...", 10);
+    
+    // perform respawn actions
+    acs_executealways(54, 0, 0, 0, 0);
+}
+
+// player respawns
+script 54 RESPAWN
+{
+	
+	
+	
+	
+	
+    // give players the 'player' tid
+    thing_changetid(0, 990);
+    
+    // take boomer cannon incase it glitched
+    takeinventory("BoomerCannon", 1);
+    
+	ACS_Execute(56,0,p_LastWeap[playernumber()],0,0);
+	
+    // is the player a bot? time to go shopping
+    if (playerisbot(playernumber()))
+    {
+        // shotgunner backpack
+        if (p_Credits[playernumber()] > f_Price[31])
+        {
+            p_Credits[playernumber()] -= f_Price[31];
+            giveinventory("SSG", 1);
+            giveinventory("Quadshot", 1);
+            setweapon("SSG");
+        }
+        
+        // assault backpack
+        if (p_Credits[playernumber()] > f_Price[32])
+        {
+            p_Credits[playernumber()] -= f_Price[32];
+            giveinventory("Spitter", 1);
+            giveinventory("Buckshot", 1);
+            setweapon("Spitter");
+        }
+        
+        // heavy backpack
+        if (p_Credits[playernumber()] > f_Price[34])
+        {
+            p_Credits[playernumber()] -= f_Price[34];
+            giveinventory("Launcher", 1);
+            giveinventory("Flinger", 1);
+            setweapon("Launcher");
+        }
+        
+        // plasma backpack
+        if (p_Credits[playernumber()] > f_Price[35])
+        {
+            p_Credits[playernumber()] -= f_Price[35];
+            giveinventory("Railgun", 1);
+            giveinventory("PlasmaGun", 1);
+            setweapon("PlasmaGun");
+        }
+    }
+    
+	
+
+    // continue ...
+    
+    // give inventory on respawn
+    delay(15);
+    acs_execute(106, 0, 1, 1, 0);
+    delay(15);
+    //t3hdoom: Originally didn't give any ammo if there's no armory. Let's give them ammo on spawn regardless
+    acs_execute(106, 0, 3, 1, 0);
+    
+    // players a bot? delay before spawning
+    if (playerisbot(playernumber()))
+    {
+        delay(35 * random(3, 15));
+        acs_executealways(104, 0, 0, 1, 0);
+    }
+    
+    // rehate for survival gametype
+    //thing_hate(110, g_Status + 100, 4);
+	
+	
+}
+
+//realized I don't need this. I'll leave it commented just in case.
+//IF YOU WANT TO ADD A SCRIPT, FEEL FREE TO USE THIS SCRIPT NUMBER
+
+/*script 55 DISCONNECT (int null) //Clearing bugs when player disconnects - just in case
+{
+	p_MenuSelection_Active[playernumber()] = 0;
+	p_TankSlot[playernumber()] = 0;
+}*/
+
+script 56 (int weapon) //Set weapon to last (separated this script from the respawn one because it's going to be executed through Decorate too)
+{
+	if(weapon == 0) weapon = p_LastWeap[playernumber()]; //If executed from Decorate
+
+	switch(weapon)//set players weap to the last one he had -- blame monster if you dont like xD
+	{
+	case 0 : 
+	SetWeapon("Beretta"); 
+	break;
+	case 1 :
+	SetWeapon("Beretta_Dual");
+	break;
+	case 2 :
+	SetWeapon("Beretta_Smg");
+	break;
+	case 3 : //you can have only 1 of these thats why the come to one..
+	SetWeapon("BoomStick");
+	SetWeapon("BoomStick_Bayonet");
+	SetWeapon("BoomStick_Explosive");
+	break;
+	case 4 :
+	SetWeapon("SSG");
+	SetWeapon("SSG_AUTOLOAD");
+	SetWeapon("SSG_EXPLOSIVE");
+	break;
+	case 5 :
+	SetWeapon("QuadShot");
+	SetWeapon("QuadShot_Bayonet");
+	SetWeapon("QuadShot_Explosive");
+	break;
+	case 6 :
+	SetWeapon("Buckshot");
+	SetWeapon("Buckshot_Chamber");
+	SetWeapon("Buckshot_Explosive");
+	break;
+	case 7 :
+	SetWeapon("Spitter");
+	SetWeapon("Spitter_GLauncher");
+	SetWeapon("Spitter_SSG");
+	break;
+	case 8 :
+	SetWeapon("Healer");
+	break;
+	case 9 :
+	SetWeapon("Stocker");
+	break;
+	case 10 :
+	SetWeapon("Launcher");
+	SetWeapon("Launcher_Multi");
+	SetWeapon("Launcher_Exploder");
+	break;
+	case 11 :
+	SetWeapon("Flinger");
+	SetWeapon("Flinger_MinePlacer");
+	SetWeapon("Flinger_Expander");
+	break;
+	case 12 :
+	SetWeapon("Plasmagun");
+	SetWeapon("plasmagun_Advanced");
+	SetWeapon("Plasmagun_Spread");
+	break;
+	case 13 :
+	SetWeapon("Railgun");
+	SetWeapon("Railgun_Taser");
+	SetWeapon("Railgun_Slug");
+	break;
+	case 14 :
+	SetWeapon("Flamer"); //Flame to death!
+	break;
+	case 15 :
+	SetWeapon("Dualshot");
+	SetWeapon("Dualshot_Razor");
+	break;
+	case 16 :
+	SetWeapon("Repeater");
+	SetWeapon("Repeater_DoubleSpeed");
+	SetWeapon("Repeater_BlastShells");
+	break;
+	case 17 :
+	SetWeapon("BFG");
+	break;
+	
+	
+	
+	}//switch end	
+}
+
+
+
+
+script 249 OPEN
+{
+	delay(35*3);
+	
+	// make sure it is not a commander gametype
+	if (f_UseScoreSystem == 1){
+		int l_CurrentLevel;
+		while(1){
+			// display
+			setfont("CONFONT");
+			sethudsize(s_ScreenSize[0], s_ScreenSize[1], s_ScreenSize[2]);
+			hudmessage(s:"Team score: ",d:getlevelinfo(LEVELINFO_KILLED_MONSTERS); 1, 256, CR_TAN, 400.0, 20.1, 7.0);
+			
+			
+			
+			// upgrade level 1
+			if (l_CurrentLevel == 0 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 100){
+				l_CurrentLevel ++;
+				c_Techflag[12] = 1;
+				f_TipShow ("CM12", "Human Engineering Phase 1", "Has been rewarded to your team!\nHealth increased", 1);
+			}
+			
+			
+			
+			// upgrade level 2
+			if (l_CurrentLevel == 1 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 450){
+				l_CurrentLevel ++;
+				c_Techflag[16] = 1;
+				f_TipShow ("CM16", "Steel Plating", "Has been rewarded to your team!\nArmor provided", 1);
+			}
+			
+			
+			
+			// upgrade level 3
+			if (l_CurrentLevel == 2 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 800){
+				l_CurrentLevel ++;
+				c_Techflag[29] = 1;
+				f_TipShow ("CM29", "Ammo Backpack", "Has been rewarded to your team!\nDouble ammo capacity", 1);
+			}
+			
+			
+			
+			// upgrade level 4
+			if (l_CurrentLevel == 3 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 1050){
+				l_CurrentLevel ++;
+				c_Techflag[28] = 1;
+				f_TipShow ("CM28", "Boomshot Rounds", "Has been rewarded to your team!\nIncreased weapon damage", 1);
+			}
+			
+			
+			
+			// upgrade level 5
+			if (l_CurrentLevel == 4 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 1500){
+				l_CurrentLevel ++;
+				c_Techflag[13] = 1;
+				f_TipShow ("CM13", "Human Engineering Phase 2", "Has been rewarded to your team!\nHealth increased", 1);
+			}
+			
+			
+			
+			// upgrade level 6
+			if (l_CurrentLevel == 5 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 2300){
+				l_CurrentLevel ++;
+				c_Techflag[56] = 1;
+				f_TipShow ("CM56", "Processing Phase 1", "Has been rewarded to your team!\nCredit bonus", 1);
+			}
+			
+			
+			
+			// upgrade level 7
+			if (l_CurrentLevel == 6 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 3800){
+				l_CurrentLevel ++;
+				c_Techflag[17] = 1;
+				f_TipShow ("CM17", "Resister Unit", "Has been rewarded to your team!\nDamage Resistance", 1);
+			}
+			
+			
+			
+			// upgrade level 8
+			if (l_CurrentLevel == 7 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 4500){
+				l_CurrentLevel ++;
+				c_Techflag[18] = 1;
+				f_TipShow ("CM18", "Asorber Unit", "Has been rewarded to your team!\nHealth regeneration", 1);
+			}
+			
+			
+			
+			// upgrade level 9
+			if (l_CurrentLevel == 8 && getlevelinfo(LEVELINFO_KILLED_MONSTERS) > 5000){
+				l_CurrentLevel ++;
+				c_Techflag[57] = 1;
+				f_TipShow ("CM56", "Processing Phase 2", "Has been rewarded to your team!\nCredit bonus", 1);
+				break;
+			}
+			delay(35*5);
+		}
+	}
+}
+
+
+// remove if wrong gametype
+script 769 (void){
+	SetResultValue(f_Gametype);
+}

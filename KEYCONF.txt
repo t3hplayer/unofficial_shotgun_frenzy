@@ -1,0 +1,25 @@
+clearplayerclasses
+addplayerclass FrenzyPlayer
+
+weaponsection Resource
+setslot 1 Beretta Beretta_Dual Beretta_SMG
+setslot 2 Boomstick Boomstick_Bayonet Boomstick_Explosive
+setslot 3 SSG SSG_Autoload SSG_Explosive Quadshot Quadshot_Bayonet Quadshot_Explosive
+setslot 4 Buckshot Buckshot_Chamber Buckshot_Explosive Spitter Spitter_SSG Spitter_GLauncher
+setslot 5 Dualshot Dualshot_Razor Repeater Repeater_DoubleSpeed Repeater_BlastShells Healer Stocker
+setslot 6 Launcher Launcher_Multi Launcher_Exploder Flinger Flinger_Expander Flinger_MinePlacer
+setslot 7 Railgun Railgun_Taser Railgun_Slug PlasmaGun PlasmaGun_Advanced PlasmaGun_Spread
+setslot 8 BFG BFGS Flamer FlamerS BoomerCannon
+
+
+addkeysection "Shotgun Frenzy Item Hotkeys" sfItemHotkeys
+addmenukey "Use Godsphere" usegodsphere
+alias usegodsphere "use Inventory_Godsphere"
+addmenukey "Use Berserk 2.0" useberserk2
+alias useberserk2 "use Inventory_Berserk2"
+addmenukey "Use Soulsphere" usesoulsphere
+alias usesoulsphere "use Inventory_Soulsphere"
+addmenukey "Use Megasphere" usemegasphere
+alias usemegasphere "use Inventory_Megasphere"
+addmenukey "Use Stimpack" usestimpack
+alias usestimpack "use Inventory_Stimpack"

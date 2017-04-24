@@ -1,0 +1,406 @@
+///////////////////////////////////////////////////
+//      SHOTGUN FRENZY
+//   a mod by Wad'a'Holic
+
+// f_StokP.acs
+// health and ammo stock pad setup
+
+#import "f_IntDB.acs"
+#import "f_Tip.acs"
+#library "f_StokP"
+#include "zcommon.acs"
+
+// a player walks onto a stock pad
+script 106 (int l_Type, int l_Give, int l_DisableFlash)
+{
+    // healing pad
+    if ((l_Type == 1 && c_Techflag[1] == 1) || (l_Type == 4))
+    {
+	
+	// display what has been researched to the player
+	if (c_Techflag[13] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ HUMAN GENETICS P2"; HUDMSG_TYPEON, 0, CR_White, 600.1, 100.1, 2.0);
+	}
+	else if (c_Techflag[12] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ HUMAN GENETICS P1"; HUDMSG_TYPEON, 0, CR_White, 600.1, 100.1, 2.0);
+	}
+	if (c_Techflag[15] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ Adrenaline"; HUDMSG_TYPEON, 0, CR_White, 600.1, 120.1, 2.0);
+	}
+	if (c_Techflag[16] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ Steel Plating"; HUDMSG_TYPEON, 0, CR_White, 600.1, 140.1, 2.0);
+	}
+	if (c_Techflag[17] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ Resister Unit"; HUDMSG_TYPEON, 0, CR_White, 600.1, 160.1, 2.0);
+	}
+	if (c_Techflag[18] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ Asorber Unit"; HUDMSG_TYPEON, 0, CR_White, 600.1, 180.1, 2.0);
+	}
+
+
+
+
+		if(p_TankSlot[playernumber()] == 2) //Preventing exploding tanks
+		{
+			Print(s:"Go to the marine command building to heal your tank (choose in menu)");
+			terminate;
+		}
+            if (l_DisableFlash == 0)		f_CenterTip("Health Restocked!");
+            if (l_DisableFlash == 0)		fadeto(0, 0, 255, 0.5, 0.0);
+            if (l_DisableFlash == 0)		localambientsound("p/heal", 128);
+            if (l_Give > 0)        giveinventory("Health", 100);
+            if (l_Give > 0 && c_Techflag[13] == 1)            setactorproperty(0, APROP_Health, 140);
+            else if  (l_Give > 0 && c_Techflag[12] == 1)      setactorproperty(0, APROP_Health, 120);
+            
+            // check for genetics lab updates
+            if (l_Give > 0)
+            {
+                if (c_Techflag[15] == 1)        setactorproperty(0, APROP_SPEED, 1.3);      // adrenaline
+                if (c_Techflag[16] == 1)        giveinventory("GreenArmor", 1);             // steel plating
+                if (c_Techflag[17] == 1)        giveinventory("Upgrade_Resister", 1);       // resister unit
+                if (c_Techflag[18] == 1)        giveinventory("Upgrade_Asorber", 1);        // asorber unit
+            }
+            
+            delay(2);
+            if (l_DisableFlash == 0)		fadeto(0, 0, 255, 0.0, 0.2);
+    }
+    
+    // ammo stock pad
+    if ((l_Type == 2 && c_Techflag[2] == 1) || (l_Type == 3))
+    {
+	// display what has been researched to the player
+	if (c_Techflag[27] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ ARMS P2"; HUDMSG_TYPEON, 0, CR_White, 600.1, 200.1, 2.0);
+	}
+	else if (c_Techflag[26] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ ARMS P1"; HUDMSG_TYPEON, 0, CR_White, 600.1, 200.1, 2.0);
+	}
+	if (c_Techflag[28] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ Boomshot Rounds"; HUDMSG_TYPEON, 0, CR_White, 600.1, 220.1, 2.0);
+	}
+	if (c_Techflag[29] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ Ammo Backpack"; HUDMSG_TYPEON, 0, CR_White, 600.1, 240.1, 2.0);
+	}
+	if (c_Techflag[71] == 1) {
+		sethudsize(800, 600, s_ScreenSize[2]);
+		setfont("CONFONT");
+		hudmessage(s:"+ 10 Stimpacks"; HUDMSG_TYPEON, 0, CR_White, 600.1, 260.1, 2.0);
+		
+		// maybe give them to the player now?
+		GiveInventory("Inventory_Stimpack", 10);
+	}
+
+			//Bullets
+			if(l_Give > 0) GiveInventory("Clip", 9999);
+			if(l_Give > 0) GiveInventory("Shell", 9999);
+			
+			//Explosive ammo
+			if(l_Give > 0) GiveInventory("RocketAmmo", 9999);
+			if(l_Give > 0) GiveInventory("GLauncher_Ammo", 9999);
+			if(l_Give > 0) GiveInventory("Flinger_Ammo", 9999);
+			
+			//Cells
+			if(l_Give > 0) GiveInventory("Cell", 9999);
+			
+			//Support pack ammo
+			if(l_Give > 0) GiveInventory("Healer_Ammo", 9999);
+			if(l_Give > 0) GiveInventory("Stocker_Ammo", 9999);
+			
+			// dualshot
+			if(l_Give > 0) GiveInventory("Dualshot_Ammo", 9999);
+			
+			
+            if (l_DisableFlash == 0)		f_CenterTip("Ammo Restocked!");
+            if (l_DisableFlash == 0)		fadeto(0, 255, 0, 0.5, 0.0);
+            if (l_DisableFlash == 0)		localambientsound("p/deploy", 128);
+			
+			//What is the meaning of this below??
+            /*if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("ShellBox", 10);
+            if (l_Give > 0)        giveinventory("ClipBox", 10);
+            if (l_Give > 0)        giveinventory("RocketBox", 10);
+            if (l_Give > 0)        giveinventory("GLauncher_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Flinger_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Healer_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Stocker_Ammo", 10);
+            if (l_Give > 0)        giveinventory("Cell", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);
+            if (l_Give > 0)        giveinventory("RocketAmmo", 10);*/
+            
+            // check for armory updates
+            if (l_Give > 0)
+            {
+                if (c_Techflag[28] == 1)        giveinventory("Upgrade_Boomshot", 1);   // boomshot rounds
+                if (c_Techflag[29] == 1)        giveinventory("Backpack", 1);           // backpack
+            }
+            
+            delay(2);
+            if (l_DisableFlash == 0)		fadeto(0, 255, 0, 0.0, 0.2);
+    }
+}  
