@@ -81,7 +81,7 @@ script 230 OPEN
 			door_open(252, 100);
 	                floor_movetovalue(250, 50, 24, 0);
 			DELAY(35);
-	                floor_raiseandcrush(250, 50, 0);
+	                floor_movetovalue(250, 50, 128, 0);
 			DELAY(35);
 		}
 		
@@ -102,7 +102,7 @@ script 236 OPEN
 			door_open(225, 100);
 	                floor_movetovalue(223, 50, 24, 0);
 			DELAY(35);
-	                floor_raiseandcrush(223, 50, 0);
+	                floor_movetovalue(223, 50, 128, 0);
 			DELAY(35);
 		}
 		
@@ -123,7 +123,7 @@ script 232 OPEN
 			door_open(196, 100);
 	                floor_movetovalue(195, 50, 24, 0);
 			DELAY(35);
-	                floor_raiseandcrush(195, 50, 0);
+	                floor_movetovalue(195, 50, 128, 0);
 			DELAY(35);
 		}
 		
@@ -144,7 +144,7 @@ script 233 OPEN
 			door_open(206, 100);
 	                floor_movetovalue(204, 50, 24, 0);
 			DELAY(35);
-	                floor_raiseandcrush(204, 50, 0);
+	                floor_movetovalue(204, 50, 128, 0);
 			DELAY(35);
 		}
 		
@@ -165,7 +165,7 @@ script 234 OPEN
 			door_open(198, 100);
 	                floor_movetovalue(197, 50, 24, 0);
 			DELAY(35);
-	                floor_raiseandcrush(197, 50, 0);
+	                floor_movetovalue(197, 50, 128, 0);
 			DELAY(35);
 		}
 		
@@ -180,7 +180,7 @@ script 235 OPEN
 		door_open(191, 100);
                 floor_movetovalue(192, 50, 24, 0);
 		DELAY(35);
-                floor_raiseandcrush(192, 50, 0);
+                floor_movetovalue(192, 50, 128, 0);
 		DELAY(35);
 	}
 }
