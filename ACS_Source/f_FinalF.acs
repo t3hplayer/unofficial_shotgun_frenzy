@@ -4,11 +4,11 @@
 
 // f_FinalF.acs
 // the battle before the end
+#library "f_FinalF"
 
 #import "f_IntDB.acs"
 #import "f_Tip.acs"
 #import "f_AIDir.acs"
-#library "f_FinalF"
 #include "zcommon.acs"
 
 // define a useful variable (for dev purposes only, use to instantly goto the boss)

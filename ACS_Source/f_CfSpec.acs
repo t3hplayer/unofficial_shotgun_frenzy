@@ -3,12 +3,9 @@
 //   a mod by Wad'a'Holic
 
 //
-#import "f_IntDB.acs"
-
-#import "f_Rank.acs"
-
 #library "f_CfSpec"
-
+#import "f_IntDB.acs"
+#import "f_Rank.acs"
 #include "zcommon.acs"
 
 // COMMANDER HOTKEYS OVERRIDE

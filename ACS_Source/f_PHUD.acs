@@ -4,9 +4,9 @@
 
 // f_PHUD.acs
 // players heads up display
+#library "f_PHUD"
 
 #import "f_IntDB.acs"
-#library "f_PHUD"
 #include "zcommon.acs"
 
 // ************** CLIENTSIDE HUDMESSAGE SCRIPTS ************** 

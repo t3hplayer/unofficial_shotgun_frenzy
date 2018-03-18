@@ -4,12 +4,12 @@
 
 // fc_Armory.acs
 // structure scripts
+#library "fc_Armor"
 
 #import "f_IntDB.acs"
 #import "f_Tip.acs"
 #import "fc_Const.acs"
 #import "fc_CommB.acs"
-#library "fc_Armor"
 #include "zcommon.acs"
 
 // build

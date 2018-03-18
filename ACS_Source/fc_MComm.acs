@@ -4,13 +4,13 @@
 
 // fc_MarineCommand.acs
 // structure scripts
+#library "fc_MComm"
 
 #import "f_IntDB.acs"
 #import "f_Tip.acs"
 #import "fc_Const.acs"
 #import "fc_CommB.acs"
 
-#library "fc_MComm"
 #include "zcommon.acs"
 
 // build

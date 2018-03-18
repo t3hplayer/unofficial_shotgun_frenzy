@@ -4,6 +4,7 @@
 
 // SF04_ACS
 // map script
+#library "sf04"
 
 // top priority
 #import "f_IntDB.acs"
@@ -27,7 +28,6 @@
 //#import "f_TaticalMap.acs"
 #import "f_Core.acs"
 
-#library "sf04"
 #include "zcommon.acs"
 
 int activateTurrets=0;

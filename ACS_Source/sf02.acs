@@ -4,6 +4,7 @@
 
 // SF02_ACS
 // map script
+#library "sf02"
 
 // top priority
 #import "f_IntDB.acs"
@@ -27,7 +28,6 @@
 //#import "f_TaticalMap.acs"
 #import "f_Core.acs"
 
-#library "sf02"
 #include "zcommon.acs"
 
 script 88 OPEN

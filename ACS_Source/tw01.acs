@@ -4,6 +4,7 @@
 
 // TW01_ACS
 // map script
+#library "tw01"
 
 // top priority
 #import "f_IntDB.acs"
@@ -30,7 +31,6 @@
 // load demon wave set, for custom sets look in the ACS directory for any fa files
 #import "fa_SSD01.acs"
 
-#library "tw01"
 #include "zcommon.acs"
 
 //map setup

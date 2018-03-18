@@ -4,13 +4,13 @@
 
 // f_Cred.acs
 // credit management
+#library "f_Cred"
+
 
 
 #import "f_IntDB.acs"
 
 #import "f_Rank.acs"
-
-#library "f_Cred"
 
 #include "zcommon.acs"
 

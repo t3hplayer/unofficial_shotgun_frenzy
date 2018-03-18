@@ -4,12 +4,12 @@
 
 // f_PStat.acs
 // player status and respawning
+#library "f_PStat"
 
 #import "f_IntDB.acs"
 #import "f_Tip.acs"
 #import "f_Cred.acs"
 #import "fl_Price.acs"
-#library "f_PStat"
 #include "zcommon.acs"
 
 // player dies

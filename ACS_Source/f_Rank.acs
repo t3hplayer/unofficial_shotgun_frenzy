@@ -4,10 +4,10 @@
 
 // f_Rank.acs
 // rank and exp management
+#library "f_Rank"
 
 #import "f_IntDB.acs"
 #import "f_Tip.acs"
-#library "f_Rank"
 #include "zcommon.acs"
 
 function void p_IncreaseRank (void)

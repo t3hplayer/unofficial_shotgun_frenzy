@@ -4,13 +4,13 @@
 
 // fc_DemonicLab.acs
 // structure scripts
+#library "fc_DLab"
 
 #import "f_IntDB.acs"
 #import "f_Tip.acs"
 #import "fc_Const.acs"
 #import "fc_CommB.acs"
 
-#library "fc_DLab"
 #include "zcommon.acs"
 
 // build

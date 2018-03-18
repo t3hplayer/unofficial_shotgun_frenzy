@@ -4,13 +4,13 @@
 
 // fc_CommandButtons.acs
 // script containing commander menu buttons
+#library "fc_CommB"
 
 // ************** CLIENTSIDE HUDMESSAGE SCRIPTS ************** 
 
 #import "f_IntDB.acs"
 #import "fl_Price.acs"
 #import "f_Tip.acs"
-#library "fc_CommB"
 #include "zcommon.acs"
 
 #define TURRET_DELAY 70

@@ -5,6 +5,7 @@
 // fc_Command.acs
 // commander mode
 // camera control script adapted from Tribeam's script
+#library "fc_Comm"
 
 // include external commander scripts
 #import "f_IntDB.acs"
@@ -19,7 +20,6 @@
 #import "fc_DLab.acs"
 #import "fc_NSilo.acs"
 
-#library "fc_Comm"
 #include "zcommon.acs"
 
 int scriptpulse;

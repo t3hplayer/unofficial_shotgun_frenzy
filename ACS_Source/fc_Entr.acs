@@ -4,10 +4,10 @@
 
 // fc_Entrance.acs
 // base door control (extracted from Shotgun Frenzy 1.1)
+#library "fc_Entr"
 
 #import "f_IntDB.acs"
 
-#library "fc_Entr"
 #include "zcommon.acs"
 
 // lift function (entrance) 1 - Genetics Lab

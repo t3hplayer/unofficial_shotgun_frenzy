@@ -4,10 +4,10 @@
 
 // f_StokP.acs
 // health and ammo stock pad setup
+#library "f_StokP"
 
 #import "f_IntDB.acs"
 #import "f_Tip.acs"
-#library "f_StokP"
 #include "zcommon.acs"
 
 // a player walks onto a stock pad

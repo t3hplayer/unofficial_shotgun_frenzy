@@ -4,11 +4,11 @@
 
 // f_SecMan.acs
 // manages the sectors
+#library "f_ScManS"
 
 #import "f_IntDB.acs"
 #import "f_Tip.acs"
 #import "fa_SetV.acs"
-#library "f_ScManS"
 #include "zcommon.acs"
 
 function int m_CalcSector (void)

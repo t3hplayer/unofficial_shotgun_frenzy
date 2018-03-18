@@ -4,9 +4,9 @@
 
 // fc_Construction.acs
 // building construction functions
+#library "fc_Const"
 
 #import "f_IntDB.acs"
-#library "fc_Const"
 #include "zcommon.acs"
 
 // line construction

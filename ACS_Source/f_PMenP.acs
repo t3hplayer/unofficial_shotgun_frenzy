@@ -4,11 +4,11 @@
 
 // f_PMenP.acs
 // item purchase directory
+#library "f_PMenP"
 
 #import "f_IntDB.acs"
 #import "fl_Price.acs"
 #import "f_Tip.acs"
-#library "f_PMenP"
 #include "zcommon.acs"
 
 // menu slot status

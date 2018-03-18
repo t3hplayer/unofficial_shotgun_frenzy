@@ -4,6 +4,7 @@
 
 // CF04_ACS
 // map script
+#library "cf04"
 
 // top priority
 #import "f_IntDB.acs"
@@ -26,7 +27,6 @@
 #import "fc_MComm.acs"
 #import "f_CfSpec.acs"
 
-#library "cf04"
 #include "zcommon.acs"
 
 // setup techflags

@@ -4,6 +4,7 @@
 
 // CF02_ACS
 // map script
+#library "cf02"
 
 // top priority
 #import "f_IntDB.acs"
@@ -50,7 +51,6 @@ script 91 OPEN
     c_Techflag[27] = 1;
 }
 
-#library "cf02"
 #include "zcommon.acs"
 
 

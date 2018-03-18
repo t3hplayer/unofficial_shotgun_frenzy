@@ -4,6 +4,7 @@
 
 // CF01_ACS
 // map script
+#library "cf01"
 
 //Priority doesn't matter anymore
 #import "f_IntDB.acs"
@@ -24,7 +25,6 @@
 #import "f_Core.acs"
 #import "f_CfSpec.acs"
 
-#library "cf01"
 #include "zcommon.acs"
 
 // setup techflags and game settings
