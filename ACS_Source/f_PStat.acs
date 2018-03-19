@@ -183,7 +183,7 @@ script 54 RESPAWN
 	
 	
     // give players the 'player' tid
-    thing_changetid(0, 990);
+    thing_changetid(0, 990+PlayerNumber());
     
     // take boomer cannon incase it glitched
     takeinventory("BoomerCannon", 1);
@@ -252,6 +252,13 @@ script 54 RESPAWN
     //thing_hate(110, g_Status + 100, 4);
 	
 	
+}
+
+script 57 (int num) DISCONNECT 
+{
+	//PrintBold(d:ActivatorTID());
+	//Thing_Damage(990+num, 90000000, MOD_UNKNOWN);
+	Thing_Remove(990+num);
 }
 
 //realized I don't need this. I'll leave it commented just in case.
