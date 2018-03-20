@@ -1,0 +1,61 @@
+ACTOR TurretRail
+{
+	obituary "%o was blasted by a Rail Turret."
+	health 450
+	radius 16
+	height 56
+	mass 10000
+	speed 0
+	MONSTER
+	-ISMONSTER //Makes it spawnable where ever you want it to be spawned
+	+FLOORCLIP
+	+FRIENDLY
+	+FASTER
+	+NOBLOOD
+	+LOOKALLAROUND
+	+SHORTMISSILERANGE
+	+NEVERRESPAWN
+	PainSound "turret/pain"
+	
+	// protect from marine damage
+	damagefactor "MarineFire", 0.0
+	damageFactor "MarineFire2", 0.0
+        DamageFactor "BFGSplash", 0.0
+        DamageFactor "BFGSpray", 0.0
+
+	//Make spawnable inside monsters
+	-SOLID
+	
+	states
+	{
+		Spawn:
+			TRT1 A 1 A_Look
+			TRT1 A 5  A_PlaySound("turret/active", CHAN_AUTO, 6)
+			loop
+		See:
+			TRT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+			TRT1 A 5  A_PlaySound("turret/active", CHAN_AUTO, 6)
+			loop
+		Missile:
+			TRT1 A 2 A_FaceTarget
+			TRT1 A 1 A_PlaySound("turret/sight", CHAN_AUTO)
+			TRT1 ABCD 1 bright
+			TRT1 E 1 bright A_CustomRailgun (50, 0, "FF 00 00", "F6 F6 F6", 0, 1, 0, "InvisiblePuff")
+			TRT1 E 1 bright A_CustomRailgun (50, 0, "FF 00 00", "F6 F6 F6", 0, 1, 0, "InvisiblePuff")
+			TRT1 E 1 bright A_CustomRailgun (50, 0, "FF 00 00", "F6 F6 F6", 0, 1, 0, "InvisiblePuff")
+			TRT1 A 1 bright
+			TRT1 A 22
+			goto See
+		Pain:
+			TRT1 A 1
+			TRT1 A 1 A_Pain
+			goto See
+		Death:
+			TRT1 A 1 bright A_SpawnItemEx ("Boom", 0, 0, 60, 0, 0, 0, 0, 160)
+			TRT1 A 0 bright A_StopSoundEx ("SoundSlot5")
+                        NULL A 0 A_NoBlocking
+			TRT1 A 0 bright A_PlaySound ("weapons/rocklx")
+			TESL B -1
+			stop
+	}
+}

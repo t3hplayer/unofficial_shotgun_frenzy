@@ -1,0 +1,147 @@
+ACTOR SSG : Weapon
+{
+	Weapon.AmmoUse 			2
+	Weapon.AmmoGive 		8
+	Weapon.AmmoType			"Shell"
+	Inventory.PickupMessage		"You got the Super Shotgun!"
+	Obituary			"%o was splattered by %k's Super Shotgun."
+	
+	Weapon.UpSound			"w2/load"
+	AttackSound			"w3/fire1"
+	
+	States
+	{
+		Ready:
+			W3E1 A 1 A_WeaponReady
+			goto Ready
+		Deselect:
+			W3E1 A 1 A_Lower
+			W3E1 A 0 A_Lower
+			goto Deselect
+		Select:
+			W3E1 A 1 A_Raise
+			W3E1 A 0 A_Raise
+			goto Select
+		Fire:
+    			W3E1 A 3 A_GunFlash
+    			W3E1 A 7 A_FireBullets (13.2, 10.1, 14, 11, "BulletPuff_Standard")	// damage switched from 11 to 11
+    			W3E1 B 7 
+    			W3E1 C 7 A_CheckReload
+    			W3E1 D 7 A_OpenShotgun2
+    			W3E1 E 7
+    			W3E1 F 7 A_LoadShotgun2
+    			W3E1 A 0 A_FireCustomMissile("splatShellCasing",45+random(-8,8),0,2,3)
+    			W3E1 A 0 A_FireCustomMissile("splatShellCasing",45+random(-8,8),0,2,3)
+    			W3E1 G 6
+    			W3E1 H 6 A_CloseShotgun2
+    			W3E1 A 5 A_ReFire
+    			goto Ready
+		Flash:
+			SHT2 I 4 bright A_Light1
+			SHT2 J 3 bright A_Light2
+			goto LightDone
+	}
+}
+
+ACTOR SSG_Autoload : Weapon
+{
+	Weapon.AmmoUse 			2
+	Weapon.AmmoGive 		8
+	Weapon.AmmoType			"Shell"
+	Inventory.PickupMessage		"You got the Super Shotgun, upgraded with Auto-Loading!"
+	Obituary			"%o was splattered by %k's Auto-Loading Super Shotgun."
+	
+	Weapon.UpSound			"w2/load"
+	AttackSound			"w3/fire2"
+	
+	States
+	{
+		Ready:
+			W3E2 A 1 A_WeaponReady
+			goto Ready
+		Deselect:
+			W3E2 A 1 A_Lower
+			W3E2 A 0 A_Lower
+			goto Deselect
+		Select:
+			W3E2 A 1 A_Raise
+			W3E2 A 0 A_Raise
+			goto Select
+		Fire:
+    			W3E2 A 3 A_GunFlash
+    			W3E2 A 7 A_FireBullets (13.2, 10.1, 14, 11, "BulletPuff_Standard")	// damage switched from 11 to 11
+    			W3E1 B 5 
+    			W3E1 C 5 A_CheckReload
+    			W3E1 C 0 A_FireCustomMissile("splatShellCasing",45+random(-8,8),0,2,3)
+    			W3E1 C 0 A_FireCustomMissile("splatShellCasing",45+random(-8,8),0,2,3)
+    			W3E1 B 4
+    			W3E2 A 3 A_CloseShotgun2
+    			W3E2 A 5 A_ReFire
+    			goto Ready
+		Flash:
+			SHT2 I 4 bright A_Light1
+			SHT2 J 3 bright A_Light2
+			goto LightDone
+	}
+}
+
+ACTOR SSG_Explosive : Weapon
+{
+	Weapon.AmmoUse1 			2
+	Weapon.AmmoUse2 			2
+	Weapon.AmmoGive 		8
+	Weapon.AmmoType1			"Shell"
+	Weapon.AmmoType2			"Shell"
+	Inventory.PickupMessage		"You got the Super Shotgun!"
+	Obituary			"%o was splattered by %k's Super Shotgun."
+	
+	Weapon.UpSound			"w2/load"
+	AttackSound			"w3/fire1"
+	
+	States
+	{
+		Ready:
+			W3E3 A 1 A_WeaponReady
+			goto Ready
+		Deselect:
+			W3E3 A 1 A_Lower
+			W3E3 A 0 A_Lower
+			goto Deselect
+		Select:
+			W3E3 A 1 A_Raise
+			W3E3 A 0 A_Raise
+			goto Select
+		Fire:
+    			W3E3 A 3 A_GunFlash
+    			W3E3 A 7 A_FireBullets (11.2, 7.1, 14, 19, "BulletPuff_Explosive")
+    			W3E1 B 7 
+    			W3E1 C 7 A_CheckReload
+    			W3E1 D 7 A_OpenShotgun2
+    			W3E3 E 7
+    			W3E3 F 7 A_LoadShotgun2
+    			W3E1 A 0 A_FireCustomMissile("splatShellCasing",45+random(-8,8),0,2,3)
+    			W3E1 A 0 A_FireCustomMissile("splatShellCasing",45+random(-8,8),0,2,3)
+    			W3E1 G 6
+    			W3E1 H 6 A_CloseShotgun2
+    			W3E3 A 5 A_ReFire
+    			goto Ready
+		AltFire:
+    			W3E3 A 3 A_GunFlash
+    			W3E1 A 7 A_FireBullets (13.2, 10.1, 14, 11, "BulletPuff_Standard")	// damage switched from 11 to 11
+    			W3E1 B 7 
+    			W3E1 C 7 A_CheckReload
+    			W3E1 D 7 A_OpenShotgun2
+    			W3E1 E 7
+    			W3E1 F 7 A_LoadShotgun2
+    			W3E1 A 0 A_FireCustomMissile("splatShellCasing",45+random(-8,8),0,2,3)
+    			W3E1 A 0 A_FireCustomMissile("splatShellCasing",45+random(-8,8),0,2,3)
+    			W3E1 G 6
+    			W3E1 H 6 A_CloseShotgun2
+    			W3E3 A 5 A_ReFire
+    			goto Ready
+		Flash:
+			SHT2 I 4 bright A_Light1
+			SHT2 J 3 bright A_Light2
+			goto LightDone
+	}
+}

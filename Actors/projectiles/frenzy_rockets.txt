@@ -1,0 +1,70 @@
+//This goes in frenzy_weapons. wad and it replaces the DW8 lump
+ACTOR Rocket_Standard
+{
+	Radius				11
+	Height				8
+	Speed				32
+	Damage				35	// reduced from 20 to 17
+	
+	DamageType			MarineFire2
+	
+	
+	explosiondamage			150	// default, 128
+	explosionradius			128	// default, 128
+	
+	Projectile
+	+RANDOMIZE
+	+DEHEXPLOSION
+	+ROCKETTRAIL
+	
+	SeeSound			"weapons/rocklf"
+	DeathSound			"weapons/rocklx"
+	Obituary			"%o rode %k's rocket."
+	
+	States
+	{
+		Spawn:
+			MISL A 1 bright
+			goto Spawn
+		Death:
+			MISL B 8 bright A_Explode
+			MISL C 6 bright
+			MISL D 4 bright
+			stop
+	}
+}
+
+ACTOR Rocket_Exploder
+{
+	Radius				11
+	Height				8
+	Speed				68
+	Damage				40	// reduced from 40 to 30
+	
+	DamageType			MarineFire2
+	
+	explosiondamage			128	// default, 128
+	explosionradius			128	// default, 128
+	
+	Projectile
+	+RANDOMIZE
+	+DEHEXPLOSION
+	+ROCKETTRAIL
+	+RIPPER
+	
+	SeeSound			"weapons/rocklf"
+	DeathSound			"weapons/rocklx"
+	Obituary			"%o rode %k's rocket."
+	
+	States
+	{
+		Spawn:
+			MIS2 A 1 bright
+			goto Spawn
+		Death:
+			MISL B 8 bright A_Explode
+			MISL C 6 bright
+			MISL D 4 bright
+			stop
+	}
+}

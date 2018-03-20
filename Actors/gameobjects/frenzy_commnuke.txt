@@ -1,0 +1,33 @@
+ACTOR Nuke
+{
+	height 2
+	radius 2
+	mass 700
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	
+	states
+	{
+	Spawn:
+                NUKE A 5
+                goto Spawn
+	}
+}
+
+ACTOR NuclearExplosion
+{
+	height 2
+	radius 2
+	mass 700
+        scale 25.0
+        renderstyle Add
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	
+	states
+	{
+	Spawn:
+                NKXP ACEGIKMOPQRSTUV 10 bright
+                stop
+	}
+}

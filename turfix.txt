@@ -1,6 +1,93 @@
+//Rocket turret fixes for player damage, solid base, tid, constant spawn
+
 ACTOR TurretRocketProj : Rocket
 {
   DamageType MarineFire2
+}
+
+ACTOR Inventory_TurretRocket_tw : Inventory_TurretRocket replaces Inventory_TurretRocket
+{
+	States
+	{
+	Use:
+		TNT1 A 0 A_SpawnItemEx("TurretRocket", 64, 0, 0, 0, 0, 0, 0, 0, 0, tid)
+		TNT1 A 1 A_SpawnItemEx("splatEmitter_CFX", 0, 0, 0, 0)
+		stop
+	}
+}
+//ACTOR TurretRocket_BuildC1_tw : TurretRocket_BuildC1 replaces TurretRocket_BuildC1
+//{
+//	-SOLID
+//}
+
+//ACTOR TurretRocket_BuildC2_tw : TurretRocket_BuildC2 replaces TurretRocket_BuildC2
+//{
+//	-SOLID
+//}
+
+//ACTOR TurretRocket_BuildC3_tw : TurretRocket_BuildC3 replaces TurretRocket_BuildC3
+//{
+//	-SOLID
+//}
+
+//ACTOR TurretRocket_BuildC4_tw : TurretRocket_BuildC4 replaces TurretRocket_BuildC4
+//{
+//	-SOLID
+//}
+
+ACTOR TurretRocket_tw2 : TurretRocket_tw replaces TurretRocket_tw
+{
+	States
+	{
+		Spawn:
+			TBAS A 0 
+                        TBAS A 0 A_SpawnItemEx("TurretRocket2_Count", 0, 0, 64)
+			TBAS A 0 A_SpawnItemEx("TurretRocket_BuildC1", 32, 32)
+			TBAS A 0 A_SpawnItemEx("TurretRocket_BuildC2", -32, 32)
+			TBAS A 0 A_SpawnItemEx("TurretRocket_BuildC3", -32, -32)
+			TBAS A 0 A_SpawnItemEx("TurretRocket_BuildC4", 32, -32)
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD A 2 bright
+			NULL A 1 A_SpawnItemEx("TurretRocket_Head", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER, 0, tid)
+			NULL A 1 A_NoBlocking
+			//goto TurretRocket::Active
+		Death:
+			Stop
+	}
 }
 
 ACTOR TurretRocket_Head_tw2 : TurretRocket_Head_tw replaces TurretRocket_Head
@@ -42,6 +129,8 @@ ACTOR TurretRocket_Head_tw2 : TurretRocket_Head_tw replaces TurretRocket_Head
 	}
 }
 
+// Flame turret fixes for solid base, tid, constant spawn
+
 ACTOR TurretFlame_Head_tw2 : TurretFlame_Head_tw replaces TurretFlame_Head
 {
 	states
@@ -60,5 +149,88 @@ ACTOR TurretFlame_Head_tw2 : TurretFlame_Head_tw replaces TurretFlame_Head
 			BTRT A 0 A_PlaySoundEx ("TTRTa/Loop", "SoundSlot5", 1)
 			
 			goto Spawn3
+	}
+}
+
+ACTOR TurretFlame_BuildC1_tw : TurretFlame_BuildC1 replaces TurretFlame_BuildC1
+{
+	-SOLID
+}
+
+ACTOR TurretFlame_BuildC2_tw : TurretFlame_BuildC2 replaces TurretFlame_BuildC2
+{
+	-SOLID
+}
+
+ACTOR TurretFlame_BuildC3_tw : TurretFlame_BuildC3 replaces TurretFlame_BuildC3
+{
+	-SOLID
+}
+
+ACTOR TurretFlame_BuildC4_tw : TurretFlame_BuildC4 replaces TurretFlame_BuildC4
+{
+	-SOLID
+}
+
+ACTOR Inventory_TurretFlame_tw : Inventory_TurretFlame replaces Inventory_TurretFlame
+{
+	States
+	{
+	Use:
+		TNT1 A 0 A_SpawnItemEx("TurretFlame", 64, 0, 0, 0, 0, 0, 0, 0, 0, tid)
+		TNT1 A 1 A_SpawnItemEx("splatEmitter_CFX", 0, 0, 0, 0)
+		stop
+	}
+}
+
+ACTOR TurretFlame_tw2 : TurretFlame_tw replaces TurretFlame
+{
+	states
+	{
+		Spawn:
+			TBAS A 0
+			TBAS A 0 A_SpawnItemEx("TurretFlame2_Count", 0, 0, 64)
+			TBAS A 0 A_SpawnItemEx("TurretFlame_BuildC1", 32, 32)
+			TBAS A 0 A_SpawnItemEx("TurretFlame_BuildC2", -32, 32)
+			TBAS A 0 A_SpawnItemEx("TurretFlame_BuildC3", -32, -32)
+			TBAS A 0 A_SpawnItemEx("TurretFlame_BuildC4", 32, -32)
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD AB 5 bright
+			TBLD A 2 bright
+			NULL A 1 A_SpawnItemEx("TurretFlame_Head", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER, 0, tid)
+			NULL A 1 A_NoBlocking
 	}
 }

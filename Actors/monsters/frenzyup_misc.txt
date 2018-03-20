@@ -1,23 +1,9 @@
-actor DemonCore_tw : DemonCore replaces DemonCore
-{
-	Health 100000
-	+DONTRIP
-	+NORADIUSDMG
-}
-
 actor sfJuggernaught_tw : sfJuggernaught replaces sfJuggernaught
 {
         Health 500000
 	+FASTMELEE
 	+MISSILEEVENMORE
 	painchance 0
-}
-
-actor HotDog_tw : HotDog replaces HotDog
-{
-	Health 25000
-	+FASTER
-	+FASTMELEE	
 }
 
 actor SpiderAnnihilator : SpiderMastermind

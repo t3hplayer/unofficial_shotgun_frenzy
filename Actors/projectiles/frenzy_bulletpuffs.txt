@@ -1,0 +1,147 @@
+ACTOR BulletDebris
+{
+	+NOBLOCKMAP
+	//+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	+CLIENTSIDEONLY
+	
+	DamageType			MarineFire
+	
+	RenderStyle			Add
+	Alpha				1
+	Mass				5
+	Scale				0.3
+	
+	States
+	{
+		Spawn:
+			PUFF A 2 bright
+			PUFF A 2
+		Melee:
+			PUFF A 2 A_FadeOut(0.2)
+			goto Melee
+	}
+}
+
+ACTOR BulletPuff_Standard
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	
+	DamageType			MarineFire
+	
+	RenderStyle			Translucent
+	Alpha				0.5
+	VSpeed				1
+	Mass				5
+	
+	States
+	{
+		Spawn:
+			PUFF A 4 bright
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF B 4 A_PlaySound("weapons/rico", CHAN_AUTO)//, 0.6, 0, 2)
+		Melee:
+			PUFF CD 4
+			stop
+	}
+}
+
+ACTOR BulletPuff_Explosive
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	+PUFFONACTORS
+	
+	DamageType			MarineFire
+	
+	RenderStyle			Translucent
+	Alpha				0.66
+	Scale				0.66
+	VSpeed				1
+	Mass				5
+	
+	States
+	{
+		Spawn:
+			BAL1 CD 4 bright
+		Crash:
+			BAL1 C 4 bright
+			BAL1 D 4 bright A_SpawnItemEx("BulletPuff_ExplosiveRemains")
+			BAL1 C 4 bright
+			stop
+		XDeath:
+			BAL1 C 4 bright
+			BAL1 D 4 bright A_SpawnItemEx("BulletPuff_ExplosiveRemains")
+			BAL1 C 4 bright
+			stop
+	}
+}
+
+actor BulletPuff_ExplosiveRemains
+{
+  Game Doom
+  SpawnID 51
+  Radius 16
+  Height 8
+  Speed 25
+  Damage 8
+  RenderStyle Add
+  Alpha 0.75
+  scale 0.5
+  SeeSound "x2/flamer"
+  DeathSound "weapons/plasmax"
+  Obituary "$OB_MPPLASMARIFLE"
+  DamageType MarineFire
+  +NODAMAGETHRUST
+  
+  explosiondamage 20
+  explosionradius 64
+  
+  States
+  {
+  Spawn:
+    FIRE ABCDEDCDEDCDEDEFGH 3 bright A_Explode
+    stop
+  }
+}
+
+// compad
+ACTOR BulletPuff_Player
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	
+	DamageType			MarineFire
+	
+	RenderStyle			Translucent
+	Alpha				0.5
+	VSpeed				1
+	Mass				5
+	
+	States
+	{
+		Spawn:
+			PUFF A 4 bright
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF A 0 bright A_SpawnItemEx("BulletDebris", random(-2, 2), random(-2, 2), random(-2, 2), random(-5, 5), random(-5, 5), random(-5, 5))
+			PUFF B 4 A_PlaySound("weapons/rico", CHAN_AUTO)//, 0.6, 0, 2)
+		Melee:
+			PUFF CD 4
+			stop
+	}
+}

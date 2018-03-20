@@ -1,0 +1,246 @@
+//This goes in frenzy_weapons. wad and it replaces the DW9 lump
+ACTOR Grenade_Flinger
+{
+	Radius				16
+	Height				8
+	
+	Speed				40
+	Damage				60	// reduced from 100 to 60
+	Gravity				1.0
+	Mass				100
+	bouncefactor                    0.8
+	
+	Obituary			"%0 was blowen to bits by %k's Flinger."
+	
+	ExplosionRadius			200		// reduced from 256 to 200
+	ExplosionDamage			50		// reduced from 64 to 50
+	DamageType			MarineFire2
+	+NOBLOCKMAP
+	+DROPOFF
+	+MISSILE
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+DOOMBOUNCE
+	bouncecount 16
+	
+	SeeSound "w9/fire1"
+	DeathSound "weapons/rocklx"
+	
+	States
+	{
+		Spawn:
+			GRNS ABA 3 bright
+			GRNS B 3 bright A_PlaySound("w9/fire2")
+			goto Spawn
+		Death:
+			MISL B 8 bright A_Explode
+			MISL C 6 bright
+			MISL D 4 bright
+			stop
+	}
+}
+
+ACTOR Grenade_Flinger_Exploder
+{
+	Radius				16
+	Height				8
+	
+	Speed				40
+	Damage				60	// reduced from 100 to 60
+	Gravity				1.0
+	Mass				100
+	DamageType			MarineFire2
+	
+	+NOBLOCKMAP
+	+DROPOFF
+	+MISSILE
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+DOOMBOUNCE
+	bouncecount 16
+	
+	SeeSound "w9/fire1"
+	DeathSound "weapons/rocklx"
+	
+	States
+	{
+		Spawn:
+			GRNS ABA 3 bright
+			GRNS B 3 bright A_PlaySound("w9/fire2")
+			goto Spawn
+		Death:
+			MISL D 0 bright A_SpawnDebris("Grenade_Flinger_Exploder_Debris")
+			MISL D 0 bright A_SpawnDebris("Grenade_Flinger_Exploder_Debris")
+			MISL D 0 bright A_SpawnDebris("Grenade_Flinger_Exploder_Debris")
+			MISL D 0 bright A_SpawnDebris("Grenade_Flinger_Exploder_Debris")
+			MISL D 0 bright A_SpawnDebris("Grenade_Flinger_Exploder_Debris")
+			MISL D 0 bright A_SpawnDebris("Grenade_Flinger_Exploder_Debris")
+			MISL D 0 bright A_SpawnDebris("Grenade_Flinger_Exploder_Debris")
+			MISL D 0 bright A_SpawnDebris("Grenade_Flinger_Exploder_Debris")
+			MISL D 1 bright
+			NULL A 50
+			MISL E 0 A_PlaySound("weapons/rocklx")
+			NULL A 50
+			MISL E 0 A_PlaySound("weapons/rocklx")
+			stop
+	}
+}
+
+ACTOR Grenade_Flinger_Exploder_Debris
+{
+	health 2
+	radius 1
+	height 1
+	scale 0.5
+	Mass				100
+	Gravity				0.5
+	
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+DOOMBOUNCE
+	bouncecount 16
+	
+	ExplosionRadius			90		// reduced from 128 to 90
+	ExplosionDamage			26		// reduced from 32 to 26
+	DamageType			MarineFire2
+	
+	States
+	{
+		Spawn:
+			GRNS AB 50
+			MISL E 0 A_Explode
+			MISL BCD 3
+			stop
+	}
+}
+
+ACTOR Grenade_MinePlacer
+{
+	Radius				16
+	Height				8
+	
+	Speed				5
+	Gravity				1.0
+	Mass				100
+	DamageType			MarineFire2
+	
+	Obituary			"%0 was blowen to bits by %k's Flinger."
+	
+	+NOBLOCKMAP
+	+DROPOFF
+	+MISSILE
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+DOOMBOUNCE
+	bouncecount 16
+	
+	SeeSound "w9/fire1"
+	DeathSound "w9_detonate"
+	
+	States
+	{
+		Spawn:
+			GRNS ABA 3 bright
+			GRNS B 3 bright A_PlaySound("w9/fire2")
+			goto Spawn
+		Death:
+			GRNS D 4 bright A_SpawnItem ("Grenade_Mine" , 0, 0, 0, 0)
+			stop
+	}
+}
+
+ACTOR Grenade_Mine
+{
+	Game Doom
+	Health 20
+	Radius 10
+	Height 34
+	+SHOOTABLE
+	+NOBLOOD
+	DeathSound "world/barrelx"
+	Obituary "$OB_BARREL" // "%o went boom."
+	ExplosionRadius			128
+	ExplosionDamage			32
+	DamageType			MarineFire2
+	States
+	{
+		Spawn:
+			GRNS CD 6
+			goto Spawn
+		Death:
+			GRNS C 5 BRIGHT A_PlaySound("w9_detonate")
+			GRNS C 5 BRIGHT A_Scream
+			MISL B 1 BRIGHT A_SpawnItem("Grenade_Mine_GoBoom")
+			Stop
+	}
+}
+
+ACTOR Grenade_Mine_GoBoom
+{
+	health 2
+	radius 1
+	height 1
+	scale 0.5
+	Mass				100
+	Gravity				0.5
+	
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+DOOMBOUNCE
+	bouncecount 16
+	
+	ExplosionRadius			177
+	ExplosionDamage			56
+	DamageType			MarineFire2
+	
+	States
+	{
+		Spawn:
+			GRNS A 1
+			MISL E 0 A_PlaySound("weapons/rocklx")
+			MISL E 0 A_Explode
+			MISL BCD 3
+			stop
+	}
+}
+
+ACTOR Grenade_GLauncher
+{
+	Radius				16
+	Height				8
+	
+	Speed				40
+	Damage				50
+	Gravity				1.0
+	Mass				100
+	
+	Obituary			"%0 was blowen to bits by %k's Grenade Launcher."
+	
+	ExplosionRadius			200		// reduced from 256 to 200
+	ExplosionDamage			50		// reduced from 64 to 50
+	DamageType			MarineFire
+	
+	+NOBLOCKMAP
+	+DROPOFF
+	+MISSILE
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+DOOMBOUNCE
+	bouncecount 16
+	
+	SeeSound "w9/fire1"
+	DeathSound "weapons/rocklx"
+	
+	States
+	{
+		Spawn:
+			GRNS ABA 3 bright
+			GRNS B 3 bright A_PlaySound("w9/fire2")
+			goto Spawn
+		Death:
+			MISL B 8 bright A_Explode
+			MISL C 6 bright
+			MISL D 4 bright
+			stop
+	}
+}
