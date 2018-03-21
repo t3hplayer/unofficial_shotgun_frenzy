@@ -1,4 +1,4 @@
-Unofficial SF 1.4 Patch, Version 5
+Unofficial SF 1.4 Patch, Version 6, alpha 1
 (Note: This includes both the unofficial patch
 AND the unofficial weapons tweak, which were
 originally separate items)
@@ -51,6 +51,8 @@ Add this file to the Zandronum command line *after* the original SF files. Examp
 ./zandronum -iwad doom2.wad -file skulltag_actors_1-1-1.pk3 -file skulltag_data_126.pk3 -file sfrenzy14.pk3 -file sfrenzy14_core.pk3 -file sf14unofficialpatch5.pk3
 
 Things fixed (that I remember):
+
+Old versions:
   Credit / upgrade costs listed in menu now match actual costs (some were mismatched before)
   Cannot recycle dualshot razor when you don't have it (people love to exploit this one)
   Hopefully impossible to use the mech weapons while not in the mech (less common)
@@ -60,5 +62,9 @@ Things fixed (that I remember):
   No longer possible to block the elevators / doors in SF maps
   Added Spider-based enemies (SpiderAnnihilator and Arachnotron) to spawn waves
   Beefed up Juggernaughts (hopefully enough this time -- they were still way too weak in the last one)
+
+UP7a1:
+  Turrets laid by a player are now automatically removed upon spec / disconnect
+  Elevators in SF maps now go to correct height
 
 contact: t3hdoom@gmx.com
