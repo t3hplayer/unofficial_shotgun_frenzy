@@ -257,7 +257,7 @@ script 54 RESPAWN
 script 57 (int num) DISCONNECT 
 {
 	//PrintBold(d:ActivatorTID());
-	//Thing_Damage(990+num, 90000000, MOD_UNKNOWN);
+	Thing_Damage(990+num, 90000000, MOD_UNKNOWN);
 	Thing_Remove(990+num);
 }
 
