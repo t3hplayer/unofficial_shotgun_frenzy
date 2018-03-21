@@ -249,6 +249,8 @@ special
 	-30:SoundSequenceOnActor(2),
 	-31:SoundSequenceOnSector(3),
 	-32:SoundSequenceOnPolyobj(2),
+	-102:ConsolePlayerNumber(0),
+	-122:RequestScriptPuke(4),
 
 	-1000:__EndOfList__(10);
 	

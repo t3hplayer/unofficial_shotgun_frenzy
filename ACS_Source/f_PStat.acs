@@ -125,10 +125,26 @@ else if(checkweapon("BFGS"))p_LastWeap[playernumber()] = 17; //hooray for bfg!
 
 }
 
+Script "CheckClientMute" OPEN CLIENTSIDE
+{
+    RequestScriptPuke(607,0,0,0);
+}
+
+Script 607 (void) NET
+{
+    //Check to see if they need to be muted
+    int mutetime = GetCVar("sf_mutetime");
+    if (mutetime) {
+        str mute = strparam(s:"ignore_idx ", d:playernumber());
+        mute = strparam(s:mute, s:" ");
+        mute = strparam(s:mute, d:mutetime);
+        ConsoleCommand(mute);
+    }
+}
+
 // player enters game
 script 53 ENTER
 {
-	
     //Clear potential bugs
     setactorproperty(0, APROP_SPEED, 1.0);
     setactorproperty(0, APROP_Health, 100);
