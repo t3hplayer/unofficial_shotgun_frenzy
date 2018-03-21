@@ -1018,7 +1018,7 @@ ACTOR Inventory_HealthDispenser : CustomInventory
 		NULL ABCDEFGH 2 bright
 		stop
 	Use:
-		TNT1 A 0 A_SpawnItemEx("HealthDispenser", 64)
+		TNT1 A 0 A_SpawnItemEx("HealthDispenser", 64, 0, 0, 0, 0, 0, 0, 0, 0, tid)
 		TNT1 A 1 A_SpawnItemEx("splatEmitter_CFX", 0, 0, 0, 0)
 		stop
 	}
@@ -1055,7 +1055,7 @@ ACTOR Inventory_AmmoDispenser : CustomInventory
 		NULL ABCDEFGH 2 bright
 		stop
 	Use:
-		TNT1 A 0 A_SpawnItemEx("AmmoDispenser", 64)
+		TNT1 A 0 A_SpawnItemEx("AmmoDispenser", 64, 0, 0, 0, 0, 0, 0, 0, 0, tid)
 		TNT1 A 1 A_SpawnItemEx("splatEmitter_CFX", 0, 0, 0, 0)
 		stop
 	}
@@ -1092,9 +1092,9 @@ ACTOR Inventory_MarineMine : CustomInventory
 		NULL ABCDEFGH 2 bright
 		stop
 	Use:
-		TNT1 A 0 A_SpawnItemEx("Landmine", 64,-32)
-		TNT1 A 0 A_SpawnItemEx("Landmine", 64,0)
-		TNT1 A 0 A_SpawnItemEx("Landmine", 64,32)
+		TNT1 A 0 A_SpawnItemEx("Landmine", 64,-32,0,0,0,0,0,0,0,tid)
+		TNT1 A 0 A_SpawnItemEx("Landmine", 64,0,0,0,0,0,0,0,0,tid)
+		TNT1 A 0 A_SpawnItemEx("Landmine", 64,32,0,0,0,0,0,0,0,tid)
 		TNT1 A 1 A_SpawnItemEx("splatEmitter_CFX", 0, 0, 0, 0)
 		stop
 	}
