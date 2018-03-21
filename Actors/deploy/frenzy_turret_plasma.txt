@@ -352,7 +352,7 @@ ACTOR TurretPlasma_Head : TurretHeadBase
 	{
 		Spawn:
 			BTRT A 1 A_Look
-			BTRT A 0 A_SpawnItemEx("TurretPlasma_Baser", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER)
+			BTRT A 0 A_SpawnItemEx("TurretPlasma_Baser", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER, 0, tid)
 			goto Spawn3
 		Spawn3:
 			NULL A 0 A_JumpIfHealthLower(300,"Spawn2")
