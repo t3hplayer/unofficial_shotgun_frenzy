@@ -373,7 +373,7 @@ ACTOR TurretFlame_Head : TurretHeadBase
 			BTRT A 1 A_Look
 			BTRT A 0 A_PlaySoundEx ("TTRTa/Loop", "SoundSlot5", 1)
 			
-			goto Spawn
+			goto Spawn3
 
 		See:
 			NULL A 0 A_JumpIfhealthLower(200,"See2")
