@@ -1,1 +1,1 @@
-STARTUPTITLE="Shotgun Frenzy 1.4 UP 7b1"
+STARTUPTITLE="Shotgun Frenzy 1.4 UP 7a1"
