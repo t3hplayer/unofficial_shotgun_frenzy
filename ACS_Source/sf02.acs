@@ -181,7 +181,10 @@ script 8 (void)
     
     // always kill the players
     acs_execute(9, 0, 0, 0, 0);
-    thrustthingz(990, 100, 0, 1);
+    for (int i = 0; i < 32; i++)
+    {
+        thrustthingz(990+i, 100, 0, 1);
+    }
     
     ChangeSky("STARMP", "STARMP");
     sector_setfade(0, 2, 0, 0);
@@ -197,8 +200,11 @@ script 9 (void)
 {
     while(1)
     {
-        thing_destroy(990, 1);
-        delay(35);
+        for (int i = 0; i < 32; i++)
+        {
+            thing_destroy(990, 1);
+            delay(35);
+        }
     }
 }
 
