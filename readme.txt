@@ -1,4 +1,4 @@
-Unofficial SF 1.4 Patch, Version 6, alpha 1
+Unofficial SF 1.4 Patch, Version 6, alpha 2
 (Note: This includes both the unofficial patch
 AND the unofficial weapons tweak, which were
 originally separate items)
@@ -66,5 +66,10 @@ Old versions:
 UP7a1:
   Turrets laid by a player are now automatically removed upon spec / disconnect
   Elevators in SF maps now go to correct height
+
+UP7a2:
+  Dispensers and mines are now also automatically removed upon spec / disconnect
+  Timing changed so hopefully the elevators in the cf maps are harder to block
+  Automatically ignore specs / players for sf_mutetime minutes based on cvar
 
 contact: t3hdoom@gmx.com
