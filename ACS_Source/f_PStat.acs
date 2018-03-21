@@ -92,6 +92,7 @@ else if(checkweapon("railgun"))p_LastWeap[playernumber()] = 13;
 else if(checkweapon("railgun_taser"))p_LastWeap[playernumber()] = 13;
 else if(checkweapon("railgun_slug"))p_LastWeap[playernumber()] = 13;
 else if(checkweapon("Flamer"))p_LastWeap[playernumber()] = 14;
+else if(checkweapon("FlamerS"))p_LastWeap[playernumber()] = 14;
 
 else if(checkweapon("dualshot"))p_LastWeap[playernumber()] = 15;
 else if(checkweapon("dualshot_razor"))p_LastWeap[playernumber()] = 15;
@@ -101,6 +102,7 @@ else if(checkweapon("repeater_doublespeed"))p_LastWeap[playernumber()] = 16;
 else if(checkweapon("repeater_blastshells"))p_LastWeap[playernumber()] = 16;
 
 else if(checkweapon("BFG"))p_LastWeap[playernumber()] = 17; //hooray for bfg!
+else if(checkweapon("BFGS"))p_LastWeap[playernumber()] = 17; //hooray for bfg!
 
 
 
@@ -257,8 +259,22 @@ script 54 RESPAWN
 script 57 (int num) DISCONNECT 
 {
 	//PrintBold(d:ActivatorTID());
+	//PrintBold(d:ACS_ExecuteWithResult(599,0,0,0));
+	//PrintBold(d:ThingCountName("TurretHeadBase", 0));
+	//PrintBold(d:ThingCountName("TurretFlame_Head", 0));
 	Thing_Damage(990+num, 90000000, MOD_UNKNOWN);
 	Thing_Remove(990+num);
+}
+
+script 599 (void)
+{
+	int count = 0;
+	count = count + ThingCountName("TurretBullet_Head", 0);
+	count = count + ThingCountName("TurretFlame_Head", 0);
+	count = count + ThingCountName("TurretPlasma_Head", 0);
+	count = count + ThingCountName("TurretRocket_Head", 0);
+	count = count + ThingCountName("TurretTesla_Head", 0);
+	SetResultValue(count);
 }
 
 //realized I don't need this. I'll leave it commented just in case.
