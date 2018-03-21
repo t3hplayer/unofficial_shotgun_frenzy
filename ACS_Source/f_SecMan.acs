@@ -346,8 +346,8 @@ script 104 (int l_Type, int l_Bypass, int l_ExecuteAlways)
 			}
 			
 			teleport_nostop(120 + g_Status, 0, 0);
-			if(p_TankSlot[playernumber()] == 2) secdelay = 20; //Give tank more time
-			else secdelay = 10; //Players
+			if(p_TankSlot[playernumber()] == 2) secdelay = 2; //Give tank more time
+			else secdelay = 2; //Players
 			if(PlayerCount() < 3){
 				f_TipShow("PLAYER", "", "Has entered the sector...", 10);
 			}
