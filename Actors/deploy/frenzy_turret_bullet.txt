@@ -77,6 +77,9 @@ ACTOR TurretBullet2_Base
 	-SOLID
 	Monster
 	+FRIENDLY
+        DamageFactor "BFGSplash", 0.0
+        DamageFactor "BFGSpray", 0.0
+
 	States
 	{
 		Spawn:

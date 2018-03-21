@@ -51,6 +51,8 @@ ACTOR TurretHeadBase //this will quickly add flags to all the damn turrets (or a
 	damagefactor "MarineFire", 0.0
 	damageFactor "MarineFire2", 0.0
 	DamageFactor "MarineFire3", 0.0
+        DamageFactor "BFGSplash", 0.0
+        DamageFactor "BFGSpray", 0.0
 
 	//Make spawnable inside monsters
 	-SOLID

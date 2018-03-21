@@ -78,6 +78,9 @@ ACTOR TurretPlasma_Baser
 	-SOLID
 	Monster
 	+FRIENDLY
+        DamageFactor "BFGSplash", 0.0
+        DamageFactor "BFGSpray", 0.0
+
 	States
 	{
 		Spawn:
